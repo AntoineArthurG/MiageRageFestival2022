@@ -1,12 +1,16 @@
 package com.example.miageragefestival2022;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.widget.TextView;
+import android.util.Log;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
 
 import java.util.List;
 
@@ -18,40 +22,55 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView tv;
+    private RecyclerView recyclerView;
+    private RecyclerViewAdapater rvAdapter;
+    public List<String> listeGroupe ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tv = findViewById(R.id.resultatReq);
+        recyclerView = findViewById(R.id.rv_ListeGroupe);
+        recyclerView.setAdapter(rvAdapter);
 
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("https://daviddurand.info/D228/festival/").addConverterFactory(GsonConverterFactory.create()).build();
+        getGroupes();
+    }
 
+    /*
+          GET Request through Retrofit2 + alimentation du recyclerView
+          TODO : Voir si on peut récupérer la response.body().getAsJsonArray("data") directement en format de liste plutôt que d'un string
+    */
+    private void getGroupes () {
+
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("https://daviddurand.info/D228/festival/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
         Api api = retrofit.create(Api.class);
-
-        Call<JsonObject> listCall = api.getGroupes();
-
-        listCall.enqueue(new Callback<JsonObject>() {
+        Call call = api.getGroupes();
+        call.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                if (!response.isSuccessful()) {
-                    tv.setText("Code : "+ response.code());
-                    return;
+                if (response.isSuccessful()) {
+
+                    // Ici on récupère la partie data de la réponse sous format de String
+                    JsonArray res = response.body().getAsJsonArray("data");
+                    // Puis on la transforme en une liste
+                    listeGroupe = new Gson().fromJson(res, new TypeToken<List<String>>() {}.getType());
+
+                    // Ici on alimente notre recyclerView adapter
+                    for (int i = 0; i < listeGroupe.size(); i++) {
+                        rvAdapter = new RecyclerViewAdapater(MainActivity.this, listeGroupe);
+                        recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+                        recyclerView.setAdapter(rvAdapter);
+                    }
                 }
-
-                JsonArray s = response.body().getAsJsonArray("data");
-                tv.setText(s.toString());
-
             }
 
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
-
+                Log.d("TAG","Response = " + t.toString());
             }
         });
-
-
     }
 }
