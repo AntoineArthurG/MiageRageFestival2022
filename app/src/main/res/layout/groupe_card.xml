@@ -22,6 +22,18 @@
             android:layout_height="match_parent"
             android:minHeight="40dp">
 
+            <Button
+                android:id="@+id/btn_listeGroupe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+                <!--android:background="?android:attr/selectableItemBackground"/>-->
+
+
+            <!--
             <TextView
                 android:id="@+id/tv_nomGroupe"
                 android:layout_width="wrap_content"
@@ -32,6 +44,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+            -->
 
             <Button
                 android:id="@+id/btn_addToFavorite"
