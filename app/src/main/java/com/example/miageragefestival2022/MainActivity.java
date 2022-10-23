@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -35,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(rvAdapter);
 
         getGroupes();
+
+
     }
 
     /*
