@@ -34,20 +34,20 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.rv_ListeGroupe);
         recyclerView.setAdapter(rvAdapter);
 
-        getGroupes();
+        getListeGroupes();
     }
 
     /*
           GET Request through Retrofit2 + alimentation du recyclerView
           TODO : Voir si on peut récupérer la response.body().getAsJsonArray("data") directement en format de liste plutôt que d'un string
     */
-    private void getGroupes () {
+    private void getListeGroupes () {
 
         Retrofit retrofit = new Retrofit.Builder().baseUrl("https://daviddurand.info/D228/festival/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         Api api = retrofit.create(Api.class);
-        Call call = api.getGroupes();
+        Call call = api.getListeGroupes();
         call.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
