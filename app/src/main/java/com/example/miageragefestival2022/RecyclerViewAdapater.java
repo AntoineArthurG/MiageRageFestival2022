@@ -37,7 +37,7 @@ public class RecyclerViewAdapater extends RecyclerView.Adapter<ListeGroupeViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ListeGroupeViewHolder holder, int position) {
-        holder.getNomGroupe().setText(listeGroupe.get(position));
+        holder.getButtonNomGroupe().setText(listeGroupe.get(position));
     }
 
     @Override
