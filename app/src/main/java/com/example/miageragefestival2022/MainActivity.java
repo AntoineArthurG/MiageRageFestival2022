@@ -8,8 +8,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -36,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         recyclerView = findViewById(R.id.rv_ListeGroupe);
-        recyclerView.setAdapter(rvAdapter);
+        //recyclerView.setAdapter(rvAdapter);
 
         getListeGroupes();
     }
@@ -57,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if (response.isSuccessful()) {
 
-                    // Ici on récupère la partie data de la réponse sous format de String
+                    // Ici on récupère la partie 'data' de la réponse sous format de String
                     JsonArray res = response.body().getAsJsonArray("data");
                     // Puis on la transforme en une liste
                     listeGroupe = new Gson().fromJson(res, new TypeToken<List<String>>() {}.getType());
@@ -81,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
     //Aller à la page Favoris
     public void favorisPage(View view){
 
-        Intent intent = new Intent(this, favorisActivity.class);
+        Intent intent = new Intent(this, FavorisActivity.class);
         startActivity(intent);
     }
 }

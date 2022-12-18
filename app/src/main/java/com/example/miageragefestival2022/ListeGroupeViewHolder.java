@@ -21,7 +21,7 @@ public class ListeGroupeViewHolder extends RecyclerView.ViewHolder {
         addToFavorite = itemView.findViewById(R.id.btn_addToFavorite);
 
         /*
-            Bouton qui permet de sélectionner un groupe et afficher les détails de celui-ci
+            Bouton qui permet de sélectionner un groupe dans le MainActivity et afficher les détails de celui-ci
          */
         nomGroupe.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,7 +33,7 @@ public class ListeGroupeViewHolder extends RecyclerView.ViewHolder {
         });
 
         /*
-            Bouton qui permet d'ajouter un groupe a la liste de groupe favoris
+            Bouton qui permet d'ajouter un groupe du MainActivity a la liste de groupe favoris
          */
         addToFavorite.setOnClickListener(new View.OnClickListener() {
             @Override

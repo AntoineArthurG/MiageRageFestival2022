@@ -34,7 +34,7 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity android:name=".favorisActivity"/>
+        <activity android:name=".FavorisActivity"/>
     </application>
 
 </manifest>
