@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -45,6 +46,7 @@ public class FavorisViewHolder extends RecyclerView.ViewHolder {
                 SharedPreferences.Editor editor = sp.edit();
 
                 editor.remove(nomGroupe.getText().toString()).commit();
+                Toast.makeText(view.getContext(), nomGroupe.getText().toString()+" supprimé", Toast.LENGTH_LONG).show();
 
             }
         });
