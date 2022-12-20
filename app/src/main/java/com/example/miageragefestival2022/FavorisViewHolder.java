@@ -1,6 +1,8 @@
 package com.example.miageragefestival2022;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -33,11 +35,16 @@ public class FavorisViewHolder extends RecyclerView.ViewHolder {
         });
 
         /*
-            TODO: Implementer l'action du bouton pour supprimer le groupe des favoris
+            Supprime le groupe sélectionner des favoris
+            TODO: rafaichir le recyclerView afin d'enlever le groupe supprimer en temps réel
          */
         supprGroupeFromFavoris.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                SharedPreferences sp = view.getContext().getSharedPreferences("mesFavoris", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sp.edit();
+
+                editor.remove(nomGroupe.getText().toString()).commit();
 
             }
         });

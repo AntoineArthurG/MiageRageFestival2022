@@ -8,14 +8,16 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
+
 public class FavorisViewAdapter extends RecyclerView.Adapter<FavorisViewHolder> {
 
     private Context context;
-    private String nomGroupe;
+    private List<String> listeFavorisGroupe;
 
-    public FavorisViewAdapter(Context ct, String groupe){
+    public FavorisViewAdapter(Context ct, List<String> listeGroupe){
        context = ct;
-       this.nomGroupe = groupe;
+       this.listeFavorisGroupe = listeGroupe;
     }
 
 
@@ -29,12 +31,12 @@ public class FavorisViewAdapter extends RecyclerView.Adapter<FavorisViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull FavorisViewHolder holder, int position) {
-        holder.getNomGroupe().setText(nomGroupe);
+        holder.getNomGroupe().setText(listeFavorisGroupe.get(position));
 
     }
 
     @Override
     public int getItemCount() {
-        return 1;
+        return listeFavorisGroupe.size();
     }
 }

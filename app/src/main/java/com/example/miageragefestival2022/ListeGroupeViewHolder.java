@@ -6,12 +6,12 @@ import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 public class ListeGroupeViewHolder extends RecyclerView.ViewHolder {
 
-    //private TextView nomGroupe;
     private Button nomGroupe;
     private Button addToFavorite;
 
@@ -41,10 +41,15 @@ public class ListeGroupeViewHolder extends RecyclerView.ViewHolder {
                 SharedPreferences sp = view.getContext().getSharedPreferences("mesFavoris", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sp.edit();
 
+                // Clear sharedPref :
+                //editor.clear().commit();
+
                 String nomGroupe = getButtonNomGroupe().getText().toString();
 
-                editor.putString("nom_groupe", nomGroupe);
+                editor.putString(nomGroupe, nomGroupe);
                 editor.commit();
+
+                Toast.makeText(view.getContext(), nomGroupe+" ajouter aux favoris", Toast.LENGTH_LONG).show();
             }
         });
     }
