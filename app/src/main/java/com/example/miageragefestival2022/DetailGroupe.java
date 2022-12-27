@@ -31,7 +31,6 @@ public class DetailGroupe extends AppCompatActivity {
     private TextView tv_description;
     private TextView tv_scene;
     private TextView tv_web;
-    private TextView tv_image;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -45,14 +44,12 @@ public class DetailGroupe extends AppCompatActivity {
         tv_description = findViewById(R.id.tv_description);
         tv_scene = findViewById(R.id.tv_scene);
         tv_web = findViewById(R.id.tv_web);
-        tv_image = findViewById(R.id.tv_image);
 
         Intent intent = getIntent();
 
         String titreGroupe = intent.getStringExtra("titreGroupe");
 
         getDetailGroupe("info/"+titreGroupe);
-        getImage("illustrations/"+titreGroupe+"/image.jpg");
     }
 
     /**
@@ -85,35 +82,6 @@ public class DetailGroupe extends AppCompatActivity {
                 tv_description.setText(groupe.getData().getTexte());
                 tv_web.setText(groupe.getData().getWeb());
                 tv_scene.setText(groupe.getData().getScene());
-
-            }
-
-            @Override
-            public void onFailure(Call<Groupe> call, Throwable t) {
-                Log.d("TAG","Response = " + t.toString());
-            }
-        });
-    }
-
-    public void getImage(String url){
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("https://daviddurand.info/D228/festival/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        Api api = retrofit.create(Api.class);
-
-        Call<Groupe> call = api.getDetailGroupe(url);
-        call.enqueue(new Callback<Groupe>() {
-            @Override
-            public void onResponse(Call<Groupe> call, Response<Groupe> response) {
-
-                Groupe groupe = new Groupe(
-                        response.body().getCode(),
-                        response.body().getMessage(),
-                        response.body().getData()
-                );
-
-                tv_image.setText(groupe.getData().getImage());
 
             }
 
