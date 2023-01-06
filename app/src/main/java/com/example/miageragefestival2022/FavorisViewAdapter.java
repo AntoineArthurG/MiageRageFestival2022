@@ -15,6 +15,7 @@ public class FavorisViewAdapter extends RecyclerView.Adapter<FavorisViewHolder> 
     private Context context;
     private List<String> listeFavorisGroupe;
 
+
     public FavorisViewAdapter(Context ct, List<String> listeGroupe){
        context = ct;
        this.listeFavorisGroupe = listeGroupe;

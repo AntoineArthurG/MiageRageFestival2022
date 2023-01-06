@@ -5,20 +5,25 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 public class ListeGroupeViewHolder extends RecyclerView.ViewHolder {
 
     private Button nomGroupe;
-    private Button addToFavorite;
+    private ImageButton addToFavorite;
 
     public ListeGroupeViewHolder(View itemView){
         super(itemView);
         nomGroupe = (Button) itemView.findViewById(R.id.btn_listeGroupe);
         addToFavorite = itemView.findViewById(R.id.btn_addToFavorite);
+
 
         /*
             Bouton qui permet de sélectionner un groupe dans le MainActivity et afficher les détails de celui-ci
@@ -41,22 +46,27 @@ public class ListeGroupeViewHolder extends RecyclerView.ViewHolder {
                 SharedPreferences sp = view.getContext().getSharedPreferences("mesFavoris", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sp.edit();
 
-                // Clear sharedPref :
-                //editor.clear().commit();
 
                 String nomGroupe = getButtonNomGroupe().getText().toString();
 
                 editor.putString(nomGroupe, nomGroupe);
                 editor.commit();
 
+                // On identifie le groupe comme favoris si il est ajouté aux favoris en changeant l'image
+                addToFavorite.setBackgroundResource(R.drawable.ic_favorite_purple);
+
+
                 Toast.makeText(view.getContext(), nomGroupe+" ajouter aux favoris", Toast.LENGTH_LONG).show();
             }
         });
     }
 
+
     public Button getButtonNomGroupe() {
         return nomGroupe;
     }
+
+    public ImageButton getImgButton () { return addToFavorite; }
 
     public void setNomGroupe(Button nomGroupe) {
         this.nomGroupe = nomGroupe;

@@ -14,7 +14,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -35,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         recyclerView = findViewById(R.id.rv_ListeGroupe);
-        //recyclerView.setAdapter(rvAdapter);
 
         getListeGroupes();
     }
