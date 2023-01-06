@@ -16,6 +16,7 @@ public class FavorisViewHolder extends RecyclerView.ViewHolder {
     private TextView nomGroupe;
     private Button detail;
     private Button supprGroupeFromFavoris;
+    private FavorisViewAdapter adapter;
 
     public FavorisViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -47,7 +48,6 @@ public class FavorisViewHolder extends RecyclerView.ViewHolder {
 
                 editor.remove(nomGroupe.getText().toString()).commit();
                 Toast.makeText(view.getContext(), nomGroupe.getText().toString()+" supprimé", Toast.LENGTH_LONG).show();
-
             }
         });
     }

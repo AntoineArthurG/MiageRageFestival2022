@@ -1,6 +1,7 @@
 package com.example.miageragefestival2022;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,10 +23,10 @@ public class RecyclerViewAdapater extends RecyclerView.Adapter<ListeGroupeViewHo
         this.listeGroupe = listeGroupe;
     }
 
-    public void setListeGroupe(List<String>  listeGroupe) {
-        this.listeGroupe = listeGroupe;
-        notifyDataSetChanged();
-    }
+//    public void setListeGroupe(List<String>  listeGroupe) {
+//        this.listeGroupe = listeGroupe;
+//        notifyDataSetChanged();
+//    }
 
     @NonNull
     @Override
@@ -38,6 +39,18 @@ public class RecyclerViewAdapater extends RecyclerView.Adapter<ListeGroupeViewHo
     @Override
     public void onBindViewHolder(@NonNull ListeGroupeViewHolder holder, int position) {
         holder.getButtonNomGroupe().setText(listeGroupe.get(position));
+
+        /*
+        Si le nom du groupe apparait dans la liste des favoris alors l'étoile des favoris se met
+        en violet sinon elle se met en clair. Cela permet a l'utilisateur de savoir quel.s groupe.s
+        sont dans ses favoris.
+         */
+        SharedPreferences sp = context.getSharedPreferences("mesFavoris", Context.MODE_PRIVATE);
+        if(sp.getAll().containsValue(listeGroupe.get(position))) {
+            holder.getImgButton().setBackgroundResource(R.drawable.ic_favorite_purple);
+        } else {
+            holder.getImgButton().setBackgroundResource(R.drawable.star_icon_clair);
+        }
     }
 
     @Override
