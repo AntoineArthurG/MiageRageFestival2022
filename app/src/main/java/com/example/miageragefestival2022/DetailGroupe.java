@@ -3,6 +3,7 @@ package com.example.miageragefestival2022;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.media.Image;
 import android.net.Uri;
@@ -12,15 +13,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.reflect.TypeToken;
+import com.bumptech.glide.Glide;
 
-import org.json.JSONArray;
-
-import java.util.List;
-
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -42,6 +37,7 @@ public class DetailGroupe extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_groupe);
+        Context context = getApplicationContext();
 
         tv_titreGroupe = findViewById(R.id.tv_nom_groupe);
         tv_date= findViewById(R.id.tv_date);
@@ -55,7 +51,15 @@ public class DetailGroupe extends AppCompatActivity {
 
         String titreGroupe = intent.getStringExtra("titreGroupe");
 
+        // On récupère l'image et on l'affiche dans la description
+        Glide.with(context)
+                .load("https://daviddurand.info/D228/festival/illustrations/" + titreGroupe + "/image.jpg")
+                .override(500,400)
+                .fitCenter()
+                .into(iv_image);
+
         getDetailGroupe("info/"+titreGroupe);
+
 
         tv_web.setOnClickListener(new View.OnClickListener() {
             @Override
