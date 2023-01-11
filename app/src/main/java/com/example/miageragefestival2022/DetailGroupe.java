@@ -4,8 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -30,7 +34,8 @@ public class DetailGroupe extends AppCompatActivity {
     private TextView tv_heure;
     private TextView tv_description;
     private TextView tv_scene;
-    private TextView tv_web;
+    private ImageView tv_web;
+    private ImageView iv_facebook;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -43,13 +48,33 @@ public class DetailGroupe extends AppCompatActivity {
         tv_heure = findViewById(R.id.tv_heure);
         tv_description = findViewById(R.id.tv_description);
         tv_scene = findViewById(R.id.tv_scene);
-        tv_web = findViewById(R.id.tv_web);
+        tv_web = (ImageView) findViewById(R.id.tv_web);
+        iv_facebook = (ImageView) findViewById(R.id.facebook);
 
         Intent intent = getIntent();
 
         String titreGroupe = intent.getStringExtra("titreGroupe");
 
         getDetailGroupe("info/"+titreGroupe);
+
+        tv_web.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String url = iv_facebook.getContentDescription().toString();
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                startActivity(intent);
+            }
+        });
+        iv_facebook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String url = iv_facebook.getContentDescription().toString();
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                startActivity(intent);
+            }
+        });
     }
 
     /**
@@ -80,8 +105,9 @@ public class DetailGroupe extends AppCompatActivity {
                 tv_date.setText(groupe.getData().getJour());
                 tv_heure.setText(groupe.getData().getHeure());
                 tv_description.setText(groupe.getData().getTexte());
-                tv_web.setText(groupe.getData().getWeb());
+                tv_web.setContentDescription(groupe.getData().getWeb());
                 tv_scene.setText(groupe.getData().getScene());
+                iv_facebook.setContentDescription(groupe.getData().getWeb());
 
             }
 
