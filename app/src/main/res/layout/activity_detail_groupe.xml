@@ -160,7 +160,7 @@
                     android:textColor="@android:color/black"
                     android:textSize="10sp" />
 
-                <TextView
+                <ImageView
                     android:id="@+id/tv_web"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -170,7 +170,17 @@
                     android:autoLink="web"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:src="@drawable/facebook"
+                    android:clickable="true"/>
+
+                <ImageView
+                    android:id="@+id/facebook"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/facebook"
+                    android:clickable="true"
+                    android:layout_gravity="right"/>
 
 
 
