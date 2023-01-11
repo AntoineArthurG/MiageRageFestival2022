@@ -31,6 +31,7 @@ public class DetailGroupe extends AppCompatActivity {
     private TextView tv_scene;
     private ImageView tv_web;
     private ImageView iv_facebook;
+    private ImageView iv_image;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -46,6 +47,7 @@ public class DetailGroupe extends AppCompatActivity {
         tv_scene = findViewById(R.id.tv_scene);
         tv_web = (ImageView) findViewById(R.id.tv_web);
         iv_facebook = (ImageView) findViewById(R.id.facebook);
+        iv_image = (ImageView) findViewById(R.id.iv_image);
 
         Intent intent = getIntent();
 
