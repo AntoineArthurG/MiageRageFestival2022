@@ -54,17 +54,15 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if (response.isSuccessful()) {
 
-                    // Ici on récupère la partie 'data' de la réponse sous format de String
+                    // On récupère la partie 'data' de la réponse sous format de String
                     JsonArray res = response.body().getAsJsonArray("data");
-                    // Puis on la transforme en une liste
+                    // On la transforme en une liste
                     listeGroupe = new Gson().fromJson(res, new TypeToken<List<String>>() {}.getType());
 
                     // Ici on alimente notre recyclerView adapter
-                    for (int i = 0; i < listeGroupe.size(); i++) {
-                        rvAdapter = new RecyclerViewAdapater(MainActivity.this, listeGroupe);
-                        recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
-                        recyclerView.setAdapter(rvAdapter);
-                    }
+                    rvAdapter = new RecyclerViewAdapater(MainActivity.this, listeGroupe);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+                    recyclerView.setAdapter(rvAdapter);
                 }
             }
 

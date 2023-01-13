@@ -13,7 +13,7 @@ import java.util.List;
 public class FavorisViewAdapter extends RecyclerView.Adapter<FavorisViewHolder> {
 
     private Context context;
-    private List<String> listeFavorisGroupe;
+    public List<String> listeFavorisGroupe;
 
 
     public FavorisViewAdapter(Context ct, List<String> listeGroupe){
@@ -27,7 +27,7 @@ public class FavorisViewAdapter extends RecyclerView.Adapter<FavorisViewHolder> 
     public FavorisViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View view = layoutInflater.inflate(R.layout.favoris_groupe_card, parent, false);
-        return new FavorisViewHolder(view);
+        return new FavorisViewHolder(view).linkAdapter(this);
     }
 
     @Override
