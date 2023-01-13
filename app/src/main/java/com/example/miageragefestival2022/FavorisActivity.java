@@ -1,8 +1,10 @@
 package com.example.miageragefestival2022;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -37,6 +39,17 @@ public class FavorisActivity extends AppCompatActivity {
         rvAdapter = new FavorisViewAdapter(this,listeGroupeFavoris);
         recyclerView.setAdapter(rvAdapter);
 
+    }
 
+    /*
+        On override le bouton de retour arrière du system pour recharger le MainActivity et éviter d'avoir
+        des groupes supprimés des favoris toujours signalés comme tel dans le MainActivity.
+     */
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(this,MainActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(i);
     }
 }
