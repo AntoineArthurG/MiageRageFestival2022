@@ -49,20 +49,17 @@ public class DetailGroupe extends AppCompatActivity {
         iv_facebook = (ImageView) findViewById(R.id.facebook);
         iv_image = (ImageView) findViewById(R.id.iv_image);
 
+        // On récupère le nom du groupe sélectionner par l'utilisateur
         Intent intent = getIntent();
-
         String titreGroupe = intent.getStringExtra("titreGroupe");
 
         // On récupère l'image et on l'affiche dans la description
-        Glide.with(context)
-                .load("https://daviddurand.info/D228/festival/illustrations/" + titreGroupe + "/image.jpg")
-                .override(500,400)
-                .fitCenter()
-                .into(iv_image);
+        getImageGroupe(context, titreGroupe);
 
-        getDetailGroupe("info/"+titreGroupe);
+        //On récupère les informations du groupe
+        getDetailGroupe("info/" + titreGroupe);
 
-
+        // On met en place le lien permettant d'accéder à la page web du groupe
         tv_web.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -100,21 +97,24 @@ public class DetailGroupe extends AppCompatActivity {
         call.enqueue(new Callback<Groupe>() {
             @Override
             public void onResponse(Call<Groupe> call, Response<Groupe> response) {
+                if(response.isSuccessful()) {
 
-                Groupe groupe = new Groupe(
-                        response.body().getCode(),
-                        response.body().getMessage(),
-                        response.body().getData()
-                );
+                    //On stock la réponse du GET dans un objet de type Groupe
+                    Groupe groupe = new Groupe(
+                            response.body().getCode(),
+                            response.body().getMessage(),
+                            response.body().getData()
+                    );
 
-                tv_titreGroupe.setText(groupe.getData().getArtiste());
-                tv_date.setText(groupe.getData().getJour());
-                tv_heure.setText(groupe.getData().getHeure());
-                tv_description.setText(groupe.getData().getTexte());
-                tv_web.setContentDescription(groupe.getData().getWeb());
-                tv_scene.setText(groupe.getData().getScene());
-                iv_facebook.setContentDescription(groupe.getData().getWeb());
-
+                    // On set chaque pièce d'information concernant le groupe dans leur visuel respectif
+                    tv_titreGroupe.setText(groupe.getData().getArtiste());
+                    tv_date.setText(groupe.getData().getJour());
+                    tv_heure.setText(groupe.getData().getHeure());
+                    tv_description.setText(groupe.getData().getTexte());
+                    tv_web.setContentDescription(groupe.getData().getWeb());
+                    tv_scene.setText(groupe.getData().getScene());
+                    iv_facebook.setContentDescription(groupe.getData().getWeb());
+                }
             }
 
             @Override
@@ -122,5 +122,16 @@ public class DetailGroupe extends AppCompatActivity {
                 Log.d("TAG","Response = " + t.toString());
             }
         });
+    }
+
+    /*
+        Récupère l'image du groupe, la transforme et l'affiche dans la page de description du groupe
+     */
+    public void getImageGroupe (Context context, String titreGroupe) {
+        Glide.with(context)
+                .load("https://daviddurand.info/D228/festival/illustrations/" + titreGroupe + "/image.jpg")
+                .override(500,400)
+                .fitCenter()
+                .into(iv_image);
     }
 }

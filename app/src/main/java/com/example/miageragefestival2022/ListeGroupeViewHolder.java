@@ -43,20 +43,34 @@ public class ListeGroupeViewHolder extends RecyclerView.ViewHolder {
         addToFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // On récupère les groupes favoris de l'utilisateur que l'on transforme en Liste
                 SharedPreferences sp = view.getContext().getSharedPreferences("mesFavoris", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sp.edit();
-
+                List<String> listeGroupeFavoris = new ArrayList<>();
+                for (Map.Entry<String, ?> entry : sp.getAll().entrySet()) {
+                    String groupe = entry.getValue().toString();
+                    listeGroupeFavoris.add(groupe);
+                }
 
                 String nomGroupe = getButtonNomGroupe().getText().toString();
 
-                editor.putString(nomGroupe, nomGroupe);
-                editor.commit();
+                // Si le groupe existe dans les favoris alors il est supprimé de la liste des favoris
+                if (listeGroupeFavoris.contains(nomGroupe)) {
+                    editor.remove(nomGroupe).commit();
 
-                // On identifie le groupe comme favoris si il est ajouté aux favoris en changeant l'image
-                addToFavorite.setBackgroundResource(R.drawable.ic_favorite_purple);
+                    // On change l'image d'identification d'un groupe favoris en conséquence
+                    addToFavorite.setBackgroundResource(R.drawable.star_icon_clair);
+                    Toast.makeText(view.getContext(), nomGroupe+" supprimer des favoris", Toast.LENGTH_SHORT).show();
+                }
+                // Sinon il est ajouté a la liste des favoris de l'utilisateur
+                else {
+                    editor.putString(nomGroupe, nomGroupe);
+                    editor.commit();
 
-
-                Toast.makeText(view.getContext(), nomGroupe+" ajouter aux favoris", Toast.LENGTH_LONG).show();
+                    // On change l'image d'identification d'un groupe favoris en conséquence
+                    addToFavorite.setBackgroundResource(R.drawable.ic_favorite_purple);
+                    Toast.makeText(view.getContext(), nomGroupe+" ajouter aux favoris", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
