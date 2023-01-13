@@ -23,25 +23,19 @@ public class FavorisActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favoris);
 
-        recyclerView = findViewById(R.id.rv_favoris);
-
         SharedPreferences sp = getSharedPreferences("mesFavoris", 0);
 
-        // La méthode getAll() renvoie une Map de type <String, ?> or nous avons besoin d'une liste afin d'alimenter le recyclerView des favoris
-        Map<String, ?> mapGroupeFavoris = sp.getAll();
-
-        for (Map.Entry<String, ?> entry : mapGroupeFavoris.entrySet()) {
-            String res = entry.getValue().toString();
-            listeGroupeFavoris.add(res);
-
+        // On récupère tout le contenu des sharedPreferences que l'on transforme en liste afin d'alimenter le recyclerView des favoris
+        for (Map.Entry<String, ?> entry : sp.getAll().entrySet()) {
+            String groupe = entry.getValue().toString();
+            listeGroupeFavoris.add(groupe);
         }
 
         // On alimente ici le recycler view avec tout les groupes favoris présent dans les sharedPreferences
-        for (int i = 0; i < listeGroupeFavoris.size(); i++) {
-            rvAdapter = new FavorisViewAdapter(FavorisActivity.this, listeGroupeFavoris);
-            recyclerView.setLayoutManager(new LinearLayoutManager(FavorisActivity.this));
-            recyclerView.setAdapter(rvAdapter);
-        }
+        recyclerView = findViewById(R.id.rv_favoris);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        rvAdapter = new FavorisViewAdapter(this,listeGroupeFavoris);
+        recyclerView.setAdapter(rvAdapter);
 
 
     }
