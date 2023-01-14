@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/Home"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="Home" />
+
+    <item
+        android:id="@+id/numeroUrgence"
+        android:icon="@drawable/ic_baseline_local_phone_24"
+        android:title="Numéros d'urgences" />
+
+    <item
+        android:id="@+id/appUtile"
+        android:icon="@drawable/ic_baseline_apps_24"
+        android:title="Applications utiles" />
+
+    <item
+        android:id="@+id/APropos"
+        android:icon="@drawable/ic_baseline_info_24"
+        android:title="A Propos" />
+
+</menu>
