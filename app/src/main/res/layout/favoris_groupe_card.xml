@@ -9,11 +9,14 @@
         android:id="@+id/cv_groupe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="3dp"
         android:layout_marginBottom="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:cardCornerRadius="5dp"
+        app:cardBackgroundColor="#DCFFFFFF"
+        app:cardElevation="10dp"
         app:cardUseCompatPadding="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,7 +28,7 @@
                 android:id="@+id/btn_Suppr_favoris"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="20dp"
                 android:background="@drawable/suppr_btn"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -36,19 +39,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
+                android:textStyle="italic"
+                android:textSize="20dp"
+                android:textColor="@color/purple_500"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/btn_Suppr_favoris"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/btn_go2Groupe"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="93dp"
+                android:layout_height="39dp"
                 android:layout_marginEnd="16dp"
                 android:text="Détails"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
