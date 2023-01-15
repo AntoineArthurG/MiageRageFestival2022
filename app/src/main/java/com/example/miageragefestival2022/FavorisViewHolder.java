@@ -62,6 +62,8 @@ public class FavorisViewHolder extends RecyclerView.ViewHolder {
 
                 // On notifie de même l'adapter du recyclerView afin de le mettre à jour
                 adapter.notifyItemRemoved(getAbsoluteAdapterPosition());
+
+
             }
         });
     }
