@@ -9,9 +9,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.gson.JsonArray;
-
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class RecyclerViewAdapater extends RecyclerView.Adapter<ListeGroupeViewHolder> {
 
