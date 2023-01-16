@@ -2,7 +2,6 @@ package com.example.miageragefestival2022;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -12,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class ListeGroupeViewHolder extends RecyclerView.ViewHolder {
 
@@ -44,19 +42,14 @@ public class ListeGroupeViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void onClick(View view) {
                 // On récupère les groupes favoris de l'utilisateur que l'on transforme en Liste
-                SharedPreferences sp = view.getContext().getSharedPreferences("mesFavoris", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sp.edit();
-                List<String> listeGroupeFavoris = new ArrayList<>();
-                for (Map.Entry<String, ?> entry : sp.getAll().entrySet()) {
-                    String groupe = entry.getValue().toString();
-                    listeGroupeFavoris.add(groupe);
-                }
+                SharedPrefHelper sp = new SharedPrefHelper(view.getContext(), "mesFavoris");
+                List<String> listeGroupeFavoris = sp.getListeGroupesSharedPref();
 
                 String nomGroupe = getButtonNomGroupe().getText().toString();
 
                 // Si le groupe existe dans les favoris alors il est supprimé de la liste des favoris
                 if (listeGroupeFavoris.contains(nomGroupe)) {
-                    editor.remove(nomGroupe).commit();
+                    sp.removeFromFavoris(nomGroupe);
 
                     // On change l'image d'identification d'un groupe favoris en conséquence
                     addToFavorite.setBackgroundResource(R.drawable.star_icon_clair);
@@ -64,8 +57,7 @@ public class ListeGroupeViewHolder extends RecyclerView.ViewHolder {
                 }
                 // Sinon il est ajouté a la liste des favoris de l'utilisateur
                 else {
-                    editor.putString(nomGroupe, nomGroupe);
-                    editor.commit();
+                    sp.ajouterFavoris(nomGroupe);
 
                     // On change l'image d'identification d'un groupe favoris en conséquence
                     addToFavorite.setBackgroundResource(R.drawable.ic_favorite_purple);

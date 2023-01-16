@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.Map;
+
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -57,7 +59,8 @@ public class DetailGroupe extends AppCompatActivity {
         getImageGroupe(context, titreGroupe);
 
         //On récupère les informations du groupe
-        getDetailGroupe("info/" + titreGroupe);
+        //getDetailGroupe("info/" + titreGroupe);
+        afficherDetail(titreGroupe);
 
         // On met en place le lien permettant d'accéder à la page web du groupe
         tv_web.setOnClickListener(new View.OnClickListener() {
@@ -80,49 +83,71 @@ public class DetailGroupe extends AppCompatActivity {
         });
     }
 
+    public void afficherDetail(String nomGroupe) {
+        SharedPrefHelper sharedPrefHelper = new SharedPrefHelper(DetailGroupe.this, nomGroupe);
+        Map<String, ?> groupe = sharedPrefHelper.getGroupe(nomGroupe);
+
+        tv_titreGroupe.setText(groupe.get("artiste").toString());
+        tv_date.setText(groupe.get("jour").toString());
+        tv_heure.setText(groupe.get("heure").toString());
+        tv_description.setText(groupe.get("texte").toString());
+        tv_web.setContentDescription(groupe.get("web").toString());
+        tv_scene.setText(groupe.get("scene").toString());
+        iv_facebook.setContentDescription(groupe.get("web").toString());
+
+        // On set chaque pièce d'information concernant le groupe dans leur visuel respectif
+//                    tv_titreGroupe.setText(groupe.getData().getArtiste());
+//                    tv_date.setText(groupe.getData().getJour());
+//                    tv_heure.setText(groupe.getData().getHeure());
+//                    tv_description.setText(groupe.getData().getTexte());
+//                    tv_web.setContentDescription(groupe.getData().getWeb());
+//                    tv_scene.setText(groupe.getData().getScene());
+//                    iv_facebook.setContentDescription(groupe.getData().getWeb());
+    }
+
     /**
         Méthode pour récuperer les informations concernant le groupe selectionné par l'utilisateur
         avec la librarie Retrofit2.
         @param url : l'url dynamique. Par ex : "/info/redveil"
      */
-    public void getDetailGroupe(String url) {
-
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("https://daviddurand.info/D228/festival/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        Api api = retrofit.create(Api.class);
-
-        Call<Groupe> call = api.getDetailGroupe(url);
-        call.enqueue(new Callback<Groupe>() {
-            @Override
-            public void onResponse(Call<Groupe> call, Response<Groupe> response) {
-                if(response.isSuccessful()) {
-
-                    //On stock la réponse du GET dans un objet de type Groupe
-                    Groupe groupe = new Groupe(
-                            response.body().getCode(),
-                            response.body().getMessage(),
-                            response.body().getData()
-                    );
-
-                    // On set chaque pièce d'information concernant le groupe dans leur visuel respectif
-                    tv_titreGroupe.setText(groupe.getData().getArtiste());
-                    tv_date.setText(groupe.getData().getJour());
-                    tv_heure.setText(groupe.getData().getHeure());
-                    tv_description.setText(groupe.getData().getTexte());
-                    tv_web.setContentDescription(groupe.getData().getWeb());
-                    tv_scene.setText(groupe.getData().getScene());
-                    iv_facebook.setContentDescription(groupe.getData().getWeb());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Groupe> call, Throwable t) {
-                Log.d("TAG","Response = " + t.toString());
-            }
-        });
-    }
+//    public void getDetailGroupe(String url) {
+//
+//        Retrofit retrofit = new Retrofit.Builder().baseUrl("https://daviddurand.info/D228/festival/")
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .build();
+//
+//        Api api = retrofit.create(Api.class);
+//
+//        Call<Groupe> call = api.getDetailGroupe(url);
+//        call.enqueue(new Callback<Groupe>() {
+//            @Override
+//            public void onResponse(Call<Groupe> call, Response<Groupe> response) {
+//                if(response.isSuccessful()) {
+//
+//                    //On stock la réponse du GET dans un objet de type Groupe
+//                    Groupe groupe = new Groupe(
+//                            response.body().getCode(),
+//                            response.body().getMessage(),
+//                            response.body().getData()
+//                    );
+//
+//                    // On set chaque pièce d'information concernant le groupe dans leur visuel respectif
+//                    tv_titreGroupe.setText(groupe.getData().getArtiste());
+//                    tv_date.setText(groupe.getData().getJour());
+//                    tv_heure.setText(groupe.getData().getHeure());
+//                    tv_description.setText(groupe.getData().getTexte());
+//                    tv_web.setContentDescription(groupe.getData().getWeb());
+//                    tv_scene.setText(groupe.getData().getScene());
+//                    iv_facebook.setContentDescription(groupe.getData().getWeb());
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<Groupe> call, Throwable t) {
+//                Log.d("TAG","Response = " + t.toString());
+//            }
+//        });
+//    }
 
     /*
         Récupère l'image du groupe, la transforme et l'affiche dans la page de description du groupe
