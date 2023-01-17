@@ -48,7 +48,7 @@
                     android:adjustViewBounds="true"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="Bienvenue sur notre page dédiée aux appls de festivals ! "
+                    android:text="Bienvenue sur notre page dédiée aux apps de festivals ! "
                     android:gravity="center"
                     android:textColor="@color/deepBlue"
                     android:textSize="11sp"
@@ -63,7 +63,7 @@
                     android:adjustViewBounds="true"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="Voici une sélection d'appls pour vivre pleinement le festival"
+                    android:text="Voici une sélection d'apps pour vivre pleinement le festival"
                     android:gravity="center"
                     android:textColor="@color/deepBlue"
                     android:textSize="10sp" />

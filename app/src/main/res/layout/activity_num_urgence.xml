@@ -103,7 +103,7 @@
                     android:adjustViewBounds="true"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="Donner l'adresse précise où les service doivent intervenir."
+                    android:text="Donner l'adresse précise où les services doivent intervenir."
                     android:textColor="@color/deepBlue"
                     android:textSize="10sp" />
 
