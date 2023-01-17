@@ -14,7 +14,11 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 
 import com.example.miageragefestival2022.databinding.ActivityMainBinding;
+
 import com.google.android.material.textfield.TextInputLayout;
+
+import com.google.android.material.navigation.NavigationView;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -76,6 +80,9 @@ public class MainActivity extends DrawerBaseActivity {
 
         listeGroupe = sharedPrefListeGroupe.getListeGroupesSharedPref();
         afficherGroupes(getListeGroupe(listeGroupe),recyclerView);
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setItemIconTintList(null);
 
     }
 
