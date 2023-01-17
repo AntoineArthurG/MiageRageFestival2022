@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.SearchView;
 
 import com.example.miageragefestival2022.databinding.ActivityMainBinding;
 
@@ -77,6 +78,19 @@ public class MainActivity extends DrawerBaseActivity {
             startActivity(getIntent());
         }
 
+        SearchView searchView = (SearchView) findViewById(R.id.searchView);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                rvAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
 
         listeGroupe = sharedPrefListeGroupe.getListeGroupesSharedPref();
         afficherGroupes(getListeGroupe(listeGroupe),recyclerView);
@@ -179,6 +193,9 @@ public class MainActivity extends DrawerBaseActivity {
         }
     }
 
+    /*
+        Renvoit un liste de Groupe utiliser pour peupler le recycler view
+     */
     public List<Groupe> getListeGroupe (List<String> listeGroupe) {
         List<Groupe> res = new ArrayList<>();
 
@@ -186,7 +203,6 @@ public class MainActivity extends DrawerBaseActivity {
             SharedPrefHelper sp = new SharedPrefHelper(this, listeGroupe.get(i));
             Groupe.Data data = new Groupe.Data(
                     listeGroupe.get(i),
-                    //sp.getGroupe(listeGroupe.get(i)).get("artiste").toString(),
                     sp.getGroupe(listeGroupe.get(i)).get("texte").toString(),
                     sp.getGroupe(listeGroupe.get(i)).get("web").toString(),
                     sp.getGroupe(listeGroupe.get(i)).get("image").toString(),
