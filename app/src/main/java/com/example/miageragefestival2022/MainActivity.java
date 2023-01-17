@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.miageragefestival2022.databinding.ActivityMainBinding;
+import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -69,6 +70,9 @@ public class MainActivity extends DrawerBaseActivity {
         }
 
 
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setItemIconTintList(null);
 
     }
 
