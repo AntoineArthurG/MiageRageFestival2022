@@ -130,7 +130,7 @@ public class DetailGroupe extends AppCompatActivity {
     public void getImageGroupe (Context context, String titreGroupe) {
         Glide.with(context)
                 .load("https://daviddurand.info/D228/festival/illustrations/" + titreGroupe + "/image.jpg")
-                .override(500,400)
+                .override(700,700)
                 .fitCenter()
                 .into(iv_image);
     }
