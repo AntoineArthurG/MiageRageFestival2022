@@ -32,7 +32,7 @@ public class FavorisViewAdapter extends RecyclerView.Adapter<FavorisViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull FavorisViewHolder holder, int position) {
-        holder.getNomGroupe().setText(listeFavorisGroupe.get(position));
+        holder.getGroupeButton().setText(listeFavorisGroupe.get(position));
 
     }
 

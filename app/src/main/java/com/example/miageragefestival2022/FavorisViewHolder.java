@@ -17,26 +17,26 @@ import java.util.Map;
 
 public class FavorisViewHolder extends RecyclerView.ViewHolder {
 
-    private TextView nomGroupe;
-    private Button detail;
+//    private TextView nomGroupe;
+    private Button groupe;
     private Button supprGroupeFromFavoris;
     private FavorisViewAdapter adapter;
 
     public FavorisViewHolder(@NonNull View itemView) {
         super(itemView);
-        nomGroupe = itemView.findViewById(R.id.tv_nomGroupeFavoris);
-        detail = itemView.findViewById(R.id.btn_go2Groupe);
+//        nomGroupe = itemView.findViewById(R.id.tv_nomGroupeFavoris);
+        groupe = itemView.findViewById(R.id.btn_go2Groupe);
         supprGroupeFromFavoris = itemView.findViewById(R.id.btn_Suppr_favoris);
 
 
         /*
             Ce bouton permet d'aller voir le détail du groupe selectionné par l'utilisateur
          */
-        detail.setOnClickListener(new View.OnClickListener() {
+        groupe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent detailGroupeIntent = new Intent(view.getContext(), DetailGroupe.class);
-                detailGroupeIntent.putExtra("titreGroupe", nomGroupe.getText().toString());
+                detailGroupeIntent.putExtra("titreGroupe", groupe.getText().toString());
                 view.getContext().startActivity(detailGroupeIntent);
             }
         });
@@ -52,13 +52,13 @@ public class FavorisViewHolder extends RecyclerView.ViewHolder {
                 SharedPreferences.Editor editor = sp.edit();
 
                 // On supprime le groupe selectionné par l'utilisateur des sharedPreferences
-                editor.remove(nomGroupe.getText().toString()).commit();
+                editor.remove(groupe.getText().toString()).commit();
 
                 // On supprime le groupe du recyclerView
                 adapter.listeFavorisGroupe.remove(getAbsoluteAdapterPosition());
 
                 // On notifie l'utilisateur de la suppression du groupe
-                Toast.makeText(view.getContext(), nomGroupe.getText().toString()+" supprimé", Toast.LENGTH_LONG).show();
+                Toast.makeText(view.getContext(), groupe.getText().toString()+" supprimé", Toast.LENGTH_LONG).show();
 
                 // On notifie de même l'adapter du recyclerView afin de le mettre à jour
                 adapter.notifyItemRemoved(getAbsoluteAdapterPosition());
@@ -68,9 +68,13 @@ public class FavorisViewHolder extends RecyclerView.ViewHolder {
         });
     }
 
-    public TextView getNomGroupe (){
-        return this.nomGroupe;
+    public Button getGroupeButton () {
+        return this.groupe;
     }
+
+//    public TextView getNomGroupe (){
+//        return this.nomGroupe;
+//    }
 
     public FavorisViewHolder linkAdapter (FavorisViewAdapter adapter) {
         this.adapter = adapter;

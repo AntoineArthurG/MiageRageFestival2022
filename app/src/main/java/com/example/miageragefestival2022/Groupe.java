@@ -59,7 +59,7 @@ public class Groupe {
         this.data = data;
     }
 
-    public class Data {
+    public static class Data {
 
         @SerializedName("artiste")
         @Expose
@@ -90,7 +90,7 @@ public class Groupe {
          * No args constructor for use in serialization
          *
          */
-        //public Data() {}
+        public Data() {}
 
         /**
          *

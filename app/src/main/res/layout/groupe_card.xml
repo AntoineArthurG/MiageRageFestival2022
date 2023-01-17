@@ -15,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:cardCornerRadius="5dp"
+        app:cardCornerRadius="10dp"
         app:cardBackgroundColor="#DCFFFFFF"
         app:cardElevation="10dp"
         app:cardUseCompatPadding="true">
@@ -24,34 +24,31 @@
             android:id="@+id/constraintLayout_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="40dp">
+            android:minHeight="40dp"
+            >
+
+            <ImageView
+                android:id="@+id/iv_groupe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/btn_listeGroupe"
                 android:layout_width="227dp"
-                android:layout_height="38dp"
-                android:layout_marginStart="20dp"
-                android:textColor="@android:color/white"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/btn_addToFavorite"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-                <!--android:background="?android:attr/selectableItemBackground"/>-->
+                app:layout_constraintStart_toEndOf="@+id/iv_groupe"
+                app:layout_constraintTop_toTopOf="parent"
+                />
 
 
-            <!--
-            <TextView
-                android:id="@+id/tv_nomGroupe"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text=""
-                android:textSize="20dp"
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-            -->
 
             <ImageButton
                 android:id="@+id/btn_addToFavorite"

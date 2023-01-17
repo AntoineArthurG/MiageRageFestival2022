@@ -1,5 +1,6 @@
 package com.example.miageragefestival2022;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.view.LayoutInflater;
@@ -9,24 +10,22 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 public class RecyclerViewAdapater extends RecyclerView.Adapter<ListeGroupeViewHolder> {
 
-    private List<String> listeGroupe;
+    private List<Groupe> listeGroupe;
     private Context context;
 
-    public RecyclerViewAdapater(Context ct, List<String>  listeGroupe) {
+    public RecyclerViewAdapater(Context ct, List<Groupe>  listeGroupe) {
         this.context = ct;
         this.listeGroupe = listeGroupe;
     }
 
-//    public void setListeGroupe(List<String>  listeGroupe) {
-//        this.listeGroupe = listeGroupe;
-//        notifyDataSetChanged();
-//    }
 
     @NonNull
     @Override
@@ -38,7 +37,10 @@ public class RecyclerViewAdapater extends RecyclerView.Adapter<ListeGroupeViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ListeGroupeViewHolder holder, int position) {
-        holder.getButtonNomGroupe().setText(listeGroupe.get(position));
+        holder.getButtonNomGroupe().setText(listeGroupe.get(position).getData().getArtiste());
+        Glide.with(context).load("https://daviddurand.info/D228/festival/" + listeGroupe.get(position).getData().getImage())
+                .override(300,270)
+                .into(holder.getImgViewGroupe());
 
         /*
         Si le nom du groupe apparait dans la liste des favoris alors l'étoile des favoris se met
@@ -46,7 +48,7 @@ public class RecyclerViewAdapater extends RecyclerView.Adapter<ListeGroupeViewHo
         sont dans ses favoris.
          */
         SharedPreferences sp = context.getSharedPreferences("mesFavoris", Context.MODE_PRIVATE);
-        if(sp.getAll().containsValue(listeGroupe.get(position))) {
+        if(sp.getAll().containsValue(listeGroupe.get(position).getData().getArtiste())) {
             holder.getImgButton().setBackgroundResource(R.drawable.ic_favorite_purple);
         } else {
             holder.getImgButton().setBackgroundResource(R.drawable.star_icon_clair);

@@ -11,13 +11,17 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 
 import com.example.miageragefestival2022.databinding.ActivityMainBinding;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
+import java.security.acl.Group;
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -36,7 +40,9 @@ public class MainActivity extends DrawerBaseActivity {
     private RecyclerView recyclerView;
     private RecyclerViewAdapater rvAdapter;
     public List<String> listeGroupe ;
-    private SharedPrefHelper sharedPrefListeGroupe ;
+    public String[] jour;
+    public String[] scene;
+    public ArrayAdapter<String> arrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,30 +51,31 @@ public class MainActivity extends DrawerBaseActivity {
         setContentView(activityMainBinding.getRoot());
         allocateActivityTitle("Accueil");
 
+        // On alimente le drop down menu du filtre par jour
+        jour = getResources().getStringArray(R.array.Jour);
+        arrayAdapter = new ArrayAdapter<>(this, com.google.android.material.R.layout.support_simple_spinner_dropdown_item, jour);
+        activityMainBinding.autoCompleteTextView.setAdapter(arrayAdapter);
+
         recyclerView = findViewById(R.id.rv_ListeGroupe);
 
         // On ouvre les shared preferences
-        sharedPrefListeGroupe = new SharedPrefHelper(this.getApplicationContext(),"listeDesGroupes");
-        listeGroupe = sharedPrefListeGroupe.getListeGroupesSharedPref();
+        SharedPrefHelper sharedPrefListeGroupe = new SharedPrefHelper(this.getApplicationContext(),"listeDesGroupes");
 
-        // Si les shared preferences sont vides alors on récupère la liste des groupe depuis l'api et on les enregistre dans les shared preferences prévu a cet effet
+        // Si les shared preferences sont vides
         if (sharedPrefListeGroupe.getListeGroupesSharedPref().isEmpty()) {
+
+            // On récupère la liste des groupes depuis l'api et on les enregistrent dans les shared preferences prévu a cet effet
             getListeGroupesAPI(sharedPrefListeGroupe);
+
+            // On notifie les shared preferences que leur contenu a changé
+            // TODO: il existe une autre manière plus propre pour cette action en passant par un listener
             finish();
             startActivity(getIntent());
-
-            sharedPrefListeGroupe = new SharedPrefHelper(this, "listeDesGroupes");
-            listeGroupe = sharedPrefListeGroupe.getListeGroupesSharedPref();
-            sauvegarderGroupe(listeGroupe);
-            afficherGroupes(listeGroupe,recyclerView);
-
-        }
-        else {
-            afficherGroupes(listeGroupe, recyclerView);
-            //sharedPrefListeGroupe.clear();
         }
 
 
+        listeGroupe = sharedPrefListeGroupe.getListeGroupesSharedPref();
+        afficherGroupes(getListeGroupe(listeGroupe),recyclerView);
 
     }
 
@@ -82,7 +89,7 @@ public class MainActivity extends DrawerBaseActivity {
                 .build();
         Api api = retrofit.create(Api.class);
         Call call = api.getListeGroupes();
-        call.enqueue(new Callback<JsonObject>() {
+       call.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if (response.isSuccessful()) {
@@ -94,6 +101,7 @@ public class MainActivity extends DrawerBaseActivity {
 
                     // On sauvegarde la liste des groupes dans les shared preferences si c'est la première ouverture de l'appli
                     sharedPreferences.saveListeGroupesToSharedPref(listeGroupe);
+                    sauvegarderGroupe(listeGroupe);
                 }
             }
 
@@ -104,25 +112,17 @@ public class MainActivity extends DrawerBaseActivity {
         });
     }
 
+
     /*
         Alimente le recycler view de l'activité
      */
-    public void afficherGroupes (List<String> listeGroupe, RecyclerView recyclerView) {
+    public void afficherGroupes (List<Groupe> listeGroupe, RecyclerView recyclerView) {
         rvAdapter = new RecyclerViewAdapater(MainActivity.this, listeGroupe);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
         recyclerView.setAdapter(rvAdapter);
     }
 
-    public void sauvegarderGroupe (List<String> listeGroupe) {
 
-        for (int i =0; i < listeGroupe.size(); i++) {
-            SharedPrefHelper sharedPrefGroupe = new SharedPrefHelper(MainActivity.this, listeGroupe.get(i));
-
-            // On récupère les details du groupe et on les enregistres dans un shared preferences dédié
-            getGroupeDetail(listeGroupe.get(i), sharedPrefGroupe);
-            System.out.println(listeGroupe.get(i) + " sauvegarder");
-        }
-    }
 
     // TODO: trouver un moyen pour que la méthode renvoie le groupe passé en paramêtre ofin de sortir la méthode saveGroupeToSharedPref()
     public void getGroupeDetail (String groupe, SharedPrefHelper sharedPreferences) {
@@ -156,6 +156,46 @@ public class MainActivity extends DrawerBaseActivity {
                 Log.d("TAG","Response = " + t.toString());
             }
         });
+    }
+
+    /*
+        Sauvegarde chaque groupe avec ses détails dans un shared preference dédié
+     */
+    public void sauvegarderGroupe (List<String> listeGroupe) {
+
+        for (int i =0; i < listeGroupe.size(); i++) {
+            SharedPrefHelper sharedPrefGroupe = new SharedPrefHelper(MainActivity.this, listeGroupe.get(i));
+
+            // On récupère les details du groupe et on les enregistres dans un shared preferences dédié
+            getGroupeDetail(listeGroupe.get(i), sharedPrefGroupe);
+
+        }
+    }
+
+    public List<Groupe> getListeGroupe (List<String> listeGroupe) {
+        List<Groupe> res = new ArrayList<>();
+
+        for (int i = 0; i < listeGroupe.size(); i++) {
+            SharedPrefHelper sp = new SharedPrefHelper(this, listeGroupe.get(i));
+            Groupe.Data data = new Groupe.Data(
+                    listeGroupe.get(i),
+                    //sp.getGroupe(listeGroupe.get(i)).get("artiste").toString(),
+                    sp.getGroupe(listeGroupe.get(i)).get("texte").toString(),
+                    sp.getGroupe(listeGroupe.get(i)).get("web").toString(),
+                    sp.getGroupe(listeGroupe.get(i)).get("image").toString(),
+                    sp.getGroupe(listeGroupe.get(i)).get("scene").toString(),
+                    sp.getGroupe(listeGroupe.get(i)).get("jour").toString(),
+                    sp.getGroupe(listeGroupe.get(i)).get("heure").toString(),
+                    (Integer) sp.getGroupe(listeGroupe.get(i)).get("time")
+            );
+            Groupe groupe = new Groupe();
+            groupe.setMessage("");
+            groupe.setCode("");
+            groupe.setData(data);
+
+            res.add(groupe);
+        }
+        return res;
     }
 
     //Aller à la page Favoris
