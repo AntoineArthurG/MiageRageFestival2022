@@ -7,478 +7,498 @@
     tools:context=".NumUrgenceActivity"
     android:background="@drawable/num_urgence_background">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/eventMainCard"
-        android:layout_width="319dp"
-        android:layout_height="585dp"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="20dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHeight_percent=".85"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent=".9">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.core.widget.NestedScrollView
+        <androidx.cardview.widget.CardView
+            android:id="@+id/eventMainCard"
             android:layout_width="match_parent"
-            android:layout_height="598dp">
+            android:layout_height="match_parent"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent=".85"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent=".9">
 
-
-            <LinearLayout
+            <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="match_parent">
 
-                <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:src="@drawable/save_ppl"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginRight="10dp"
-                    android:adjustViewBounds="true"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:text="Votre appel doit être le plus clair possible : "
-                    android:textColor="@color/deepBlue"
-                    android:textSize="10sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
-                    android:adjustViewBounds="true"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:text="Qui je suis : Victime, témoin ou autre ? "
-                    android:textColor="@color/deepBlue"
-                    android:textSize="10sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="10dp"
-                    android:adjustViewBounds="true"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:text="Donner un numéro de téléphone sur lequel vous restez joignable."
-                    android:textColor="@color/deepBlue"
-                    android:textSize="10sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="10dp"
-                    android:adjustViewBounds="true"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:text="Où je suis ? "
-                    android:textColor="@color/deepBlue"
-                    android:textSize="10sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="10dp"
-                    android:adjustViewBounds="true"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:text="Donner l'adresse précise où les services doivent intervenir."
-                    android:textColor="@color/deepBlue"
-                    android:textSize="10sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="10dp"
-                    android:adjustViewBounds="true"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:text="Pourquoi j'appelle ? "
-                    android:textColor="@color/deepBlue"
-                    android:textSize="10sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="10dp"
-                    android:adjustViewBounds="true"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:text="Précisez le ou les motifs de votre appel."
-                    android:textColor="@color/deepBlue"
-                    android:textSize="10sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="10dp"
-                    android:adjustViewBounds="true"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:text="Ces informations peuvent sauver des vies."
-                    android:textColor="@color/deepBlue"
-                    android:textSize="10sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="10dp"
-                    android:adjustViewBounds="true"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:text="Un accident peut survenir n'importe quand et n'importe où."
-                    android:textColor="@color/deepBlue"
-                    android:textSize="10sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginRight="10dp"
-                    android:adjustViewBounds="true"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:text="Voici les numéros d'urgence à contacter en cas de besoin :"
-                    android:textColor="@color/deepBlue"
-                    android:textSize="10sp" />
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/num_urgence"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:src="@drawable/ic_baseline_local_phone_24" />
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/save_ppl"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="10dp"
                         android:adjustViewBounds="true"
                         android:ellipsize="end"
                         android:maxLines="1"
-                        android:text="Numéro d’appel européen : "
+                        android:text="Votre appel doit être le plus clair possible : "
                         android:textColor="@color/deepBlue"
-                        android:textSize="10sp"
-                        android:textStyle="bold"/>
+                        android:textSize="10sp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:adjustViewBounds="true"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="Qui je suis : Victime, témoin ou autre ? "
+                        android:textColor="@color/deepBlue"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginRight="10dp"
                         android:adjustViewBounds="true"
                         android:ellipsize="end"
                         android:maxLines="1"
-                        android:text="112"
+                        android:text="Donner un numéro de téléphone sur lequel vous restez joignable."
                         android:textColor="@color/deepBlue"
-                        android:textSize="10sp"
-                        android:textStyle="bold"/>
+                        android:textSize="10sp" />
 
-                </LinearLayout>
-
-                <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/num_urgence"
-                android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
+                    <TextView
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:src="@drawable/ic_baseline_local_phone_24" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="20dp"
-                        android:adjustViewBounds="true"
-                        android:ellipsize="end"
-                        android:maxLines="1"
-                        android:text="SAMU : "
-                        android:textColor="@color/deepBlue"
-                        android:textSize="10sp"
-                        android:textStyle="bold"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginRight="10dp"
                         android:adjustViewBounds="true"
                         android:ellipsize="end"
                         android:maxLines="1"
-                        android:text="15"
+                        android:text="Où je suis ? "
                         android:textColor="@color/deepBlue"
                         android:textSize="10sp"
-                        android:textStyle="bold"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/num_urgence"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:src="@drawable/ic_baseline_local_phone_24" />
+                        android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="20dp"
-                        android:adjustViewBounds="true"
-                        android:ellipsize="end"
-                        android:maxLines="1"
-                        android:text="Police secours /Gendarme : "
-                        android:textColor="@color/deepBlue"
-                        android:textSize="10sp"
-                        android:textStyle="bold"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginLeft="15dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginRight="10dp"
                         android:adjustViewBounds="true"
                         android:ellipsize="end"
                         android:maxLines="1"
-                        android:text="17"
+                        android:text="Donner l'adresse précise où les services doivent intervenir."
                         android:textColor="@color/deepBlue"
-                        android:textSize="10sp"
-                        android:textStyle="bold"/>
-                </LinearLayout>
+                        android:textSize="10sp" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/num_urgence"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
+                    <TextView
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:src="@drawable/ic_baseline_local_phone_24" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="20dp"
-                        android:adjustViewBounds="true"
-                        android:ellipsize="end"
-                        android:maxLines="1"
-                        android:text="Sapeurs-Pompiers : "
-                        android:textColor="@color/deepBlue"
-                        android:textSize="10sp"
-                        android:textStyle="bold"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginRight="10dp"
                         android:adjustViewBounds="true"
                         android:ellipsize="end"
                         android:maxLines="1"
-                        android:text="18"
+                        android:text="Pourquoi j'appelle ? "
                         android:textColor="@color/deepBlue"
                         android:textSize="10sp"
-                        android:textStyle="bold"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/num_urgence"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:src="@drawable/ic_baseline_local_phone_24" />
+                        android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="20dp"
-                        android:adjustViewBounds="true"
-                        android:ellipsize="end"
-                        android:maxLines="1"
-                        android:text="Urgence maritime : "
-                        android:textColor="@color/deepBlue"
-                        android:textSize="10sp"
-                        android:textStyle="bold"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginLeft="15dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginRight="10dp"
                         android:adjustViewBounds="true"
                         android:ellipsize="end"
                         android:maxLines="1"
-                        android:text="196"
+                        android:text="Précisez le ou les motifs de votre appel."
                         android:textColor="@color/deepBlue"
-                        android:textSize="10sp"
-                        android:textStyle="bold"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/num_urgence"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:src="@drawable/ic_baseline_local_phone_24" />
+                        android:textSize="10sp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="20dp"
-                        android:adjustViewBounds="true"
-                        android:ellipsize="end"
-                        android:maxLines="1"
-                        android:text="Urgence aéronautique : "
-                        android:textColor="@color/deepBlue"
-                        android:textSize="10sp"
-                        android:textStyle="bold"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginLeft="15dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginRight="10dp"
                         android:adjustViewBounds="true"
                         android:ellipsize="end"
                         android:maxLines="1"
-                        android:text="191"
+                        android:text="Ces informations peuvent sauver des vies."
                         android:textColor="@color/deepBlue"
-                        android:textSize="10sp"
-                        android:textStyle="bold"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/num_urgence"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:src="@drawable/ic_baseline_local_phone_24" />
+                        android:textSize="10sp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="20dp"
-                        android:adjustViewBounds="true"
-                        android:ellipsize="end"
-                        android:maxLines="1"
-                        android:text="Alerte attentat - Alerte enlèvement : "
-                        android:textColor="@color/deepBlue"
-                        android:textSize="10sp"
-                        android:textStyle="bold"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginLeft="15dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginRight="10dp"
                         android:adjustViewBounds="true"
                         android:ellipsize="end"
                         android:maxLines="1"
-                        android:text="197"
+                        android:text="Un accident peut survenir n'importe quand et n'importe où."
                         android:textColor="@color/deepBlue"
-                        android:textSize="10sp"
-                        android:textStyle="bold"/>
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="10dp"
+                        android:adjustViewBounds="true"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="Voici les numéros d'urgence à contacter en cas de besoin :"
+                        android:textColor="@color/deepBlue"
+                        android:textSize="10sp" />
+
+                    <LinearLayout
+                        android:id="@+id/num_appel_euro"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/num_urgence"
+                        android:orientation="horizontal"
+                        android:clickable="true">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:src="@drawable/ic_baseline_local_phone_24" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="20dp"
+                            android:adjustViewBounds="true"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="Numéro d’appel européen : "
+                            android:textColor="@color/deepBlue"
+                            android:textSize="10sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/num_euro"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="10dp"
+                            android:adjustViewBounds="true"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="112"
+                            android:textColor="@color/deepBlue"
+                            android:textSize="10sp"
+                            android:textStyle="bold"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/num_urgence"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:src="@drawable/ic_baseline_local_phone_24" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="20dp"
+                            android:adjustViewBounds="true"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="SAMU : "
+                            android:textColor="@color/deepBlue"
+                            android:textSize="10sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="10dp"
+                            android:adjustViewBounds="true"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="15"
+                            android:textColor="@color/deepBlue"
+                            android:textSize="10sp"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/num_urgence"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:src="@drawable/ic_baseline_local_phone_24" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="20dp"
+                            android:adjustViewBounds="true"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="Police secours /Gendarme : "
+                            android:textColor="@color/deepBlue"
+                            android:textSize="10sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="10dp"
+                            android:adjustViewBounds="true"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="17"
+                            android:textColor="@color/deepBlue"
+                            android:textSize="10sp"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/num_urgence"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:src="@drawable/ic_baseline_local_phone_24" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="20dp"
+                            android:adjustViewBounds="true"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="Sapeurs-Pompiers : "
+                            android:textColor="@color/deepBlue"
+                            android:textSize="10sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="10dp"
+                            android:adjustViewBounds="true"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="18"
+                            android:textColor="@color/deepBlue"
+                            android:textSize="10sp"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/num_urgence"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:src="@drawable/ic_baseline_local_phone_24" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="20dp"
+                            android:adjustViewBounds="true"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="Urgence maritime : "
+                            android:textColor="@color/deepBlue"
+                            android:textSize="10sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="10dp"
+                            android:adjustViewBounds="true"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="196"
+                            android:textColor="@color/deepBlue"
+                            android:textSize="10sp"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/num_urgence"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:src="@drawable/ic_baseline_local_phone_24" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="20dp"
+                            android:adjustViewBounds="true"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="Urgence aéronautique : "
+                            android:textColor="@color/deepBlue"
+                            android:textSize="10sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="10dp"
+                            android:adjustViewBounds="true"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="191"
+                            android:textColor="@color/deepBlue"
+                            android:textSize="10sp"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/num_urgence"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:src="@drawable/ic_baseline_local_phone_24" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="20dp"
+                            android:adjustViewBounds="true"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="Alerte attentat - Alerte enlèvement : "
+                            android:textColor="@color/deepBlue"
+                            android:textSize="10sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="10dp"
+                            android:adjustViewBounds="true"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="197"
+                            android:textColor="@color/deepBlue"
+                            android:textSize="10sp"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+
+
+
                 </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+        </androidx.cardview.widget.CardView>
 
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </LinearLayout>
-        </androidx.core.widget.NestedScrollView>
-    </androidx.cardview.widget.CardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 
