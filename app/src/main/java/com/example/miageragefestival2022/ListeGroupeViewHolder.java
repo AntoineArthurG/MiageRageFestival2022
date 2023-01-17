@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,11 +17,13 @@ public class ListeGroupeViewHolder extends RecyclerView.ViewHolder {
 
     private Button nomGroupe;
     private ImageButton addToFavorite;
+    private ImageView iv_groupe;
 
     public ListeGroupeViewHolder(View itemView){
         super(itemView);
         nomGroupe = (Button) itemView.findViewById(R.id.btn_listeGroupe);
         addToFavorite = itemView.findViewById(R.id.btn_addToFavorite);
+        iv_groupe = itemView.findViewById(R.id.iv_groupe);
 
 
         /*
@@ -73,6 +76,10 @@ public class ListeGroupeViewHolder extends RecyclerView.ViewHolder {
     }
 
     public ImageButton getImgButton () { return addToFavorite; }
+
+    public ImageView getImgViewGroupe () {
+        return iv_groupe;
+    }
 
     public void setNomGroupe(Button nomGroupe) {
         this.nomGroupe = nomGroupe;

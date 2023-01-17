@@ -7,7 +7,8 @@
     android:background="@color/white"
     tools:context=".MainActivity">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout"
         android:layout_width="674dp"
         android:layout_height="627dp"
         android:background="@drawable/wave"
@@ -15,85 +16,110 @@
         app:layout_constraintHorizontal_bias="0.296"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-    </LinearLayout>
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button"
-        android:layout_width="121dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/custom_button"
-        android:text="Mes Favoris"
-        android:textColor="#FFFFFF"
-        android:textStyle="italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.914"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:onClick="favorisPage"/>
 
     <TextView
         android:id="@+id/Bienvenue"
-        android:layout_width="186dp"
-        android:layout_height="39dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="10dp"
         android:text="Bienvenue au"
         android:textColor="@color/white"
         android:textSize="31sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/filtre_jour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/info"
+        android:hint="Filtrer par jour"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        >
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:inputType="none"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/filtre_scene"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        app:layout_constraintStart_toEndOf="@+id/filtre_jour"
+        app:layout_constraintTop_toTopOf="@+id/filtre_jour"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        >
+
+        <AutoCompleteTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:inputType="none">
+
+        </AutoCompleteTextView>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/Text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="132dp"
         android:fontFamily="sans-serif-light"
         android:text="MR Festival 2022!"
         android:textColor="@color/white"
         android:textSize="31sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Bienvenue"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toStartOf="@+id/Bienvenue"
+        app:layout_constraintTop_toBottomOf="@+id/Bienvenue" />
 
     <TextView
         android:id="@+id/info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="100dp"
         android:fontFamily="sans-serif-light"
         android:text="Choisis et découvre en live tes artistes préférés."
         android:textColor="@color/white"
         android:textSize="17sp"
         android:textStyle="italic"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Bienvenue"
-        app:layout_constraintVertical_bias="0.118" />
+        app:layout_constraintStart_toStartOf="@+id/Text"
+        app:layout_constraintTop_toBottomOf="@+id/Text" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_ListeGroupe"
-        android:layout_width="346dp"
-        android:layout_height="414dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/rv_linearlayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/info"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toBottomOf="@+id/filtre_jour">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_ListeGroupe"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </androidx.recyclerview.widget.RecyclerView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

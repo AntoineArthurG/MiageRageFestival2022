@@ -78,6 +78,8 @@ public class SharedPrefHelper {
         editor.putString(nomGroupe,nomGroupe).apply();
     }
 
+
+
     public void clear() {
         editor.clear().commit();
     }
