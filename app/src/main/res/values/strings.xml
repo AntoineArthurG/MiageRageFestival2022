@@ -7,6 +7,11 @@
         <item></item>
         <item>Vendredi</item>
         <item>Samedi</item>
-        <item>Dimanche</item>
+    </string-array>
+
+    <string-array name="scene">
+        <item></item>
+        <item>Acoustique</item>
+        <item>Amplifié</item>
     </string-array>
 </resources>

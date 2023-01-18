@@ -233,6 +233,8 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/ll_samu"
+                        android:clickable="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
@@ -261,6 +263,7 @@
                             android:textStyle="bold"/>
 
                         <TextView
+                            android:id="@+id/tv_num_samu"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
@@ -276,12 +279,14 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/ll_police"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/num_urgence"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:clickable="true">
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -304,6 +309,7 @@
                             android:textStyle="bold"/>
 
                         <TextView
+                            android:id="@+id/tv_police"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"

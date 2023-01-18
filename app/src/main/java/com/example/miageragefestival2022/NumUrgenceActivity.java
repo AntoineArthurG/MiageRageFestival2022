@@ -3,6 +3,7 @@ package com.example.miageragefestival2022;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.sax.StartElementListener;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -31,6 +32,26 @@ public class NumUrgenceActivity extends DrawerBaseActivity {
                 TextView tv_num = findViewById(R.id.num_euro);
                 String num = tv_num.getText().toString();
                 Intent appel = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", num, null));
+                startActivity(appel);
+            }
+        });
+
+        LinearLayout samu = findViewById(R.id.ll_samu);
+        samu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView tv_samu = findViewById(R.id.tv_num_samu);
+                Intent appel = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", tv_samu.getText().toString(), null));
+                startActivity(appel);
+            }
+        });
+
+        LinearLayout police = findViewById(R.id.ll_police);
+        police.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView tv_police = findViewById(R.id.tv_police);
+                Intent appel = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", tv_police.getText().toString(), null));
                 startActivity(appel);
             }
         });

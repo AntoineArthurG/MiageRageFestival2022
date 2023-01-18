@@ -76,14 +76,17 @@ public class RecyclerViewAdapater extends RecyclerView.Adapter<ListeGroupeViewHo
         protected FilterResults performFiltering(CharSequence constraint) {
             List<Groupe> listeFiltrer = new ArrayList<>();
 
-            if (constraint == null || constraint.length() == 0) {
-                listeFiltrer.addAll(listeGroupe);
+            if (constraint == null || constraint.length() == 0 ) {
+                listeFiltrer.addAll(listeGroupeFull);
             }
             else {
                 String filtre = constraint.toString().toLowerCase().trim();
 
                 for (Groupe groupe : listeGroupeFull) {
-                    if (groupe.getData().getJour().toLowerCase().contains(filtre) || groupe.getData().getScene().toLowerCase().contains(filtre)) {
+                    if (groupe.getData().getJour().toLowerCase().contains(filtre)
+                            || groupe.getData().getScene().toLowerCase().contains(filtre)
+                            || groupe.getData().getArtiste().toLowerCase().contains(filtre)
+                    ) {
                         listeFiltrer.add(groupe);
                     }
                 }

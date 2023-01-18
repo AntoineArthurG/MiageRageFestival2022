@@ -57,11 +57,12 @@
         >
 
         <AutoCompleteTextView
-            android:id="@+id/autoCompleteTextView"
+            android:id="@+id/jour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:inputType="none"/>
+            android:inputType="none"
+            />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -76,10 +77,12 @@
         >
 
         <AutoCompleteTextView
+            android:id="@+id/scene"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:inputType="none">
+            android:inputType="none"
+            android:hint="Filtrer par scene">
 
         </AutoCompleteTextView>
     </com.google.android.material.textfield.TextInputLayout>

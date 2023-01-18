@@ -1,22 +1,18 @@
 package com.example.miageragefestival2022;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.SearchView;
 
 import com.example.miageragefestival2022.databinding.ActivityMainBinding;
-
-import com.google.android.material.textfield.TextInputLayout;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -25,13 +21,9 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
-import java.security.acl.Group;
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -44,10 +36,10 @@ public class MainActivity extends DrawerBaseActivity {
 
     private RecyclerView recyclerView;
     private RecyclerViewAdapater rvAdapter;
-    public List<String> listeGroupe ;
     public String[] jour;
     public String[] scene;
-    public ArrayAdapter<String> arrayAdapter;
+    public ArrayAdapter<String> jourArrayAdapter;
+    public ArrayAdapter<String> sceneArrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,8 +50,13 @@ public class MainActivity extends DrawerBaseActivity {
 
         // On alimente le drop down menu du filtre par jour
         jour = getResources().getStringArray(R.array.Jour);
-        arrayAdapter = new ArrayAdapter<>(this, com.google.android.material.R.layout.support_simple_spinner_dropdown_item, jour);
-        activityMainBinding.autoCompleteTextView.setAdapter(arrayAdapter);
+        jourArrayAdapter = new ArrayAdapter<>(this, com.google.android.material.R.layout.support_simple_spinner_dropdown_item, jour);
+        activityMainBinding.jour.setAdapter(jourArrayAdapter);
+
+        // On alimente le drop down menu du filtre par scene
+        scene = getResources().getStringArray(R.array.scene);
+        sceneArrayAdapter = new ArrayAdapter<>(this, com.google.android.material.R.layout.support_simple_spinner_dropdown_item,scene);
+        activityMainBinding.scene.setAdapter(sceneArrayAdapter);
 
         recyclerView = findViewById(R.id.rv_ListeGroupe);
 
@@ -78,6 +75,32 @@ public class MainActivity extends DrawerBaseActivity {
             startActivity(getIntent());
         }
 
+        List<Groupe> listeGroupe = getListeGroupe(sharedPrefListeGroupe.getListeGroupesSharedPref());
+        afficherGroupes(listeGroupe, recyclerView);
+
+
+        // Filtre les groupes par jour grace à une liste déroulante
+        AutoCompleteTextView jour = findViewById(R.id.jour);
+        jour.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String texte = jour.getText().toString().toLowerCase();
+                rvAdapter.getFilter().filter(texte);
+            }
+        });
+
+        // Filtre les groupes par scene grace à une liste déroulante
+        AutoCompleteTextView scene = findViewById(R.id.scene);
+        scene.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String texte = scene.getText().toString().toLowerCase();
+                rvAdapter.getFilter().filter(texte);
+            }
+        });
+
+
+        // Filtre les groupes grace à une recherche
         SearchView searchView = (SearchView) findViewById(R.id.searchView);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -91,9 +114,6 @@ public class MainActivity extends DrawerBaseActivity {
                 return false;
             }
         });
-
-        listeGroupe = sharedPrefListeGroupe.getListeGroupesSharedPref();
-        afficherGroupes(getListeGroupe(listeGroupe),recyclerView);
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setItemIconTintList(null);
