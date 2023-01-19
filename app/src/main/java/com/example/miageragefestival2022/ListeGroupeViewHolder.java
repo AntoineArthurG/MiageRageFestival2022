@@ -72,10 +72,12 @@ public class ListeGroupeViewHolder extends RecyclerView.ViewHolder {
 
                     // On change l'image d'identification d'un groupe favoris en conséquence
                     addToFavorite.setBackgroundResource(R.drawable.ic_favorite_purple);
-                    Toast.makeText(view.getContext(), nomGroupe+" ajouter aux favoris", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(view.getContext(), nomGroupe + " ajouter aux favoris", Toast.LENGTH_SHORT).show();
 
                     // set Notif
                     Intent intent = new Intent(view.getContext(), ReminderBoradcast.class);
+                    intent.putExtra("NOM", nomGroupe);
+                    intent.putExtra("SCENE", spGroupe.getGroupe().getData().getScene());
                     PendingIntent pendingIntent = PendingIntent.getBroadcast(view.getContext(), 0, intent,PendingIntent.FLAG_IMMUTABLE);
 
                     AlarmManager alarmManager = (AlarmManager) view.getContext().getSystemService(Context.ALARM_SERVICE);

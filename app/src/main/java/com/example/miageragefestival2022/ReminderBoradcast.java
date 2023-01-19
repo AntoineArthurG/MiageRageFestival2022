@@ -11,10 +11,15 @@ public class ReminderBoradcast extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        String nomGroupe = intent.getStringExtra("NOM");
+        String scene = intent.getStringExtra("SCENE");
+        String msg = nomGroupe + " est sur le point de commencer à jouer sur la scène " + scene + ". Amuse toi bien !";
+
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "myCh")
                 .setSmallIcon(android.R.drawable.stat_notify_chat)
                 .setContentTitle("MR Festival")
-                .setContentText("hello hello")
+                .setStyle(new NotificationCompat.BigTextStyle().bigText(msg))
+                .setContentText(msg)
                 .setAutoCancel(true);
 
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(context);
