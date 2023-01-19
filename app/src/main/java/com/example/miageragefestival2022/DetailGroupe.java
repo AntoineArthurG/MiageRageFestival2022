@@ -85,15 +85,23 @@ public class DetailGroupe extends AppCompatActivity {
 
     public void afficherDetail(String nomGroupe) {
         SharedPrefHelper sharedPrefHelper = new SharedPrefHelper(DetailGroupe.this, nomGroupe);
-        Map<String, ?> groupe = sharedPrefHelper.getGroupe(nomGroupe);
+        Groupe groupe = sharedPrefHelper.getGroupe();
 
-        tv_titreGroupe.setText(groupe.get("artiste").toString());
-        tv_date.setText(groupe.get("jour").toString());
-        tv_heure.setText(groupe.get("heure").toString());
-        tv_description.setText(groupe.get("texte").toString());
-        tv_web.setContentDescription(groupe.get("web").toString());
-        tv_scene.setText(groupe.get("scene").toString());
-        iv_facebook.setContentDescription(groupe.get("web").toString());
+        tv_titreGroupe.setText(groupe.getData().getArtiste());
+        tv_date.setText(groupe.getData().getJour());
+        tv_heure.setText(groupe.getData().getHeure());
+        tv_description.setText(groupe.getData().getTexte());
+        tv_web.setContentDescription(groupe.getData().getWeb());
+        tv_scene.setText(groupe.getData().getScene());
+        iv_facebook.setContentDescription(groupe.getData().getWeb());
+//
+//        tv_titreGroupe.setText(groupe.get("artiste").toString());
+//        tv_date.setText(groupe.get("jour").toString());
+//        tv_heure.setText(groupe.get("heure").toString());
+//        tv_description.setText(groupe.get("texte").toString());
+//        tv_web.setContentDescription(groupe.get("web").toString());
+//        tv_scene.setText(groupe.get("scene").toString());
+//        iv_facebook.setContentDescription(groupe.get("web").toString());
     }
 
     /*

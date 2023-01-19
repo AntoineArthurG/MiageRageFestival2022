@@ -1,5 +1,10 @@
 package com.example.miageragefestival2022;
 
+import android.app.AlarmManager;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
@@ -8,6 +13,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -61,11 +68,25 @@ public class ListeGroupeViewHolder extends RecyclerView.ViewHolder {
                 // Sinon il est ajouté a la liste des favoris de l'utilisateur
                 else {
                     sp.ajouterFavoris(nomGroupe);
+                    SharedPrefHelper spGroupe = new SharedPrefHelper(view.getContext(), nomGroupe);
 
                     // On change l'image d'identification d'un groupe favoris en conséquence
                     addToFavorite.setBackgroundResource(R.drawable.ic_favorite_purple);
                     Toast.makeText(view.getContext(), nomGroupe+" ajouter aux favoris", Toast.LENGTH_SHORT).show();
+
+                    // set Notif
+                    Intent intent = new Intent(view.getContext(), ReminderBoradcast.class);
+                    PendingIntent pendingIntent = PendingIntent.getBroadcast(view.getContext(), 0, intent,PendingIntent.FLAG_IMMUTABLE);
+
+                    AlarmManager alarmManager = (AlarmManager) view.getContext().getSystemService(Context.ALARM_SERVICE);
+                    Integer time = spGroupe.getGroupe().getData().getTime() * 10;
+                    Long currentTime = System.currentTimeMillis();
+
+                    alarmManager.set(AlarmManager.RTC_WAKEUP,
+                            currentTime+ time,
+                            pendingIntent);
                 }
+
             }
         });
     }
@@ -81,7 +102,17 @@ public class ListeGroupeViewHolder extends RecyclerView.ViewHolder {
         return iv_groupe;
     }
 
-    public void setNomGroupe(Button nomGroupe) {
-        this.nomGroupe = nomGroupe;
+    private void createNotificationChannel (View view) {
+        CharSequence name = "groupeNotif";
+        String description = "Notification passage groupe";
+        NotificationChannel channel = new NotificationChannel("MyCh", name, NotificationManager.IMPORTANCE_HIGH);
+        channel.setDescription(description);
+
+        NotificationManager notificationManager = view.getContext().getSystemService(NotificationManager.class);
+        notificationManager.createNotificationChannel(channel);
     }
+
+//    public void setNomGroupe(Button nomGroupe) {
+//        this.nomGroupe = nomGroupe;
+//    }
 }
