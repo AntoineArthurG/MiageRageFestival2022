@@ -14,9 +14,6 @@ public interface Api {
     @GET("liste")
     Call<JsonObject> getListeGroupes();
 
-    @GET("liste")
-    Call<List<String>> getListe();
-
     /*
         L'annotation @Url permet de concaténer l'URL de base avec l'URL dynamique
      */

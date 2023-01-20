@@ -104,17 +104,5 @@ public class ListeGroupeViewHolder extends RecyclerView.ViewHolder {
         return iv_groupe;
     }
 
-    private void createNotificationChannel (View view) {
-        CharSequence name = "groupeNotif";
-        String description = "Notification passage groupe";
-        NotificationChannel channel = new NotificationChannel("MyCh", name, NotificationManager.IMPORTANCE_HIGH);
-        channel.setDescription(description);
 
-        NotificationManager notificationManager = view.getContext().getSystemService(NotificationManager.class);
-        notificationManager.createNotificationChannel(channel);
-    }
-
-//    public void setNomGroupe(Button nomGroupe) {
-//        this.nomGroupe = nomGroupe;
-//    }
 }

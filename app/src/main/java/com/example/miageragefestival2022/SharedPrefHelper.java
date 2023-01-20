@@ -11,7 +11,6 @@ import java.util.Map;
 public class SharedPrefHelper {
 
     public String groupe;
-    public String nom_shared_pref;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
 
@@ -25,9 +24,8 @@ public class SharedPrefHelper {
      */
     public void saveListeGroupesToSharedPref (List<String> listeGroupe) {
         for (int i = 0; i < listeGroupe.size(); i++) {
-            editor.putString(listeGroupe.get(i), listeGroupe.get(i)).apply();
+            editor.putString(listeGroupe.get(i), listeGroupe.get(i)).commit();
         }
-
     }
 
     /*
@@ -36,15 +34,9 @@ public class SharedPrefHelper {
     public List<String> getListeGroupesSharedPref () {
         List<String> listeGroupe = new ArrayList<>();
 
-        if (sharedPreferences.getAll().isEmpty()) {
-            return listeGroupe;
-        }
-        else {
-            // On transforme la map renvoyer par les shared preferences en liste
-            for (Map.Entry<String, ?> entry : sharedPreferences.getAll().entrySet()) {
-                String groupe = entry.getValue().toString();
-                listeGroupe.add(groupe);
-            }
+        for (Map.Entry<String, ?> entry : sharedPreferences.getAll().entrySet()) {
+            String groupe = entry.getValue().toString();
+            listeGroupe.add(groupe);
         }
 
         // On retourne la liste obtenu des shared preferences
@@ -65,10 +57,6 @@ public class SharedPrefHelper {
             editor.commit();
     }
 
-//    public Map<String, ?> getGroupe() {
-//        Map<String, ?> groupe = sharedPreferences.getAll();
-//        return groupe;
-//    }
 
     public Groupe getGroupe() {
         Map<String, ?> groupe = sharedPreferences.getAll();
@@ -87,7 +75,6 @@ public class SharedPrefHelper {
         res.setCode("");
         res.setMessage("");
         res.setData(data);
-        //res.setData((Groupe.Data) groupe.values());
 
         return res;
     }
