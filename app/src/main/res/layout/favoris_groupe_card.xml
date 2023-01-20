@@ -24,6 +24,14 @@
             android:layout_height="wrap_content"
             android:minHeight="40dp">
 
+            <ImageView
+                android:id="@+id/iv_favoris"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <Button
                 android:id="@+id/btn_Suppr_favoris"
                 android:layout_width="30dp"
@@ -48,21 +56,17 @@
 
             <Button
                 android:id="@+id/btn_go2Groupe"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_marginStart="16dp"
+                android:background="@android:color/transparent"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btn_Suppr_favoris"
                 app:layout_constraintStart_toEndOf="@+id/iv_favoris"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:gravity="left|center_vertical"/>
 
-            <ImageView
-                android:id="@+id/iv_favoris"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

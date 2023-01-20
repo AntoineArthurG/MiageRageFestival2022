@@ -35,7 +35,7 @@ public class FavorisViewAdapter extends RecyclerView.Adapter<FavorisViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull FavorisViewHolder holder, int position) {
         holder.getGroupeButton().setText(listeFavorisString.get(position));
-        Glide.with(context).load("https://daviddurand.info/D228/festival/illustrations/" + listeFavorisString.get(position) + "image.jpg")
+        Glide.with(context).load("https://daviddurand.info/D228/festival/illustrations/" + listeFavorisString.get(position) + "/image.jpg")
                 .override(300,270)
                 .into(holder.getImgViewGroupe());
 
