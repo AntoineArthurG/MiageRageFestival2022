@@ -21,7 +21,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
-import java.security.acl.Group;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,6 +48,7 @@ public class MainActivity extends DrawerBaseActivity {
         setContentView(activityMainBinding.getRoot());
         allocateActivityTitle("Accueil");
 
+
         // On alimente le drop down menu du filtre par jour
         jour = getResources().getStringArray(R.array.Jour);
         jourArrayAdapter = new ArrayAdapter<>(this, com.google.android.material.R.layout.support_simple_spinner_dropdown_item, jour);
@@ -63,6 +63,7 @@ public class MainActivity extends DrawerBaseActivity {
 
         // On ouvre les shared preferences
         SharedPrefHelper sharedPrefListeGroupe = new SharedPrefHelper(this.getApplicationContext(),"listeDesGroupes");
+        List<String> liste = sharedPrefListeGroupe.getListeGroupesSharedPref();
 
         // Si les shared preferences sont vides
         if (sharedPrefListeGroupe.getListeGroupesSharedPref().isEmpty()) {
@@ -72,11 +73,15 @@ public class MainActivity extends DrawerBaseActivity {
 
             // On notifie les shared preferences que leur contenu a changé
             // TODO: il existe une autre manière plus propre pour cette action en passant par un listener
-            finish();
-            startActivity(getIntent());
+
         }
 
-        List<Groupe> listeGroupe = getListeGroupe(sharedPrefListeGroupe.getListeGroupesSharedPref());
+        if(liste.isEmpty()){
+            Intent welcome = new Intent(this, WelcomeActivity.class);
+            startActivity(welcome);
+        }
+
+        List<Groupe> listeGroupe = getListeGroupe(liste);
         afficherGroupes(listeGroupe, recyclerView);
 
 
@@ -131,7 +136,7 @@ public class MainActivity extends DrawerBaseActivity {
                 .build();
         Api api = retrofit.create(Api.class);
         Call call = api.getListeGroupes();
-       call.enqueue(new Callback<JsonObject>() {
+        call.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if (response.isSuccessful()) {
