@@ -52,7 +52,7 @@ public class SharedPrefHelper {
     }
 
 
-    public void saveGroupeToSharedPref (Groupe groupe) {
+    public void saveGroupe (Groupe groupe) {
             editor.putString("artiste", groupe.getData().getArtiste());
             editor.putString("texte", groupe.getData().getTexte());
             editor.putString("web", groupe.getData().getWeb());
@@ -65,9 +65,31 @@ public class SharedPrefHelper {
             editor.commit();
     }
 
-    public Map<String, ?> getGroupe(String nomGroupe) {
+//    public Map<String, ?> getGroupe() {
+//        Map<String, ?> groupe = sharedPreferences.getAll();
+//        return groupe;
+//    }
+
+    public Groupe getGroupe() {
         Map<String, ?> groupe = sharedPreferences.getAll();
-        return groupe;
+
+        Groupe.Data data = new Groupe.Data(
+                groupe.get("artiste").toString(),
+                groupe.get("texte").toString(),
+                groupe.get("web").toString(),
+                groupe.get("image").toString(),
+                groupe.get("scene").toString(),
+                groupe.get("jour").toString(),
+                groupe.get("heure").toString(),
+                (Integer) groupe.get("time")
+        );
+        Groupe res = new Groupe();
+        res.setCode("");
+        res.setMessage("");
+        res.setData(data);
+        //res.setData((Groupe.Data) groupe.values());
+
+        return res;
     }
 
     public void removeFromFavoris (String nomGroupe) {

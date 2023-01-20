@@ -8,17 +8,19 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 public class FavorisViewAdapter extends RecyclerView.Adapter<FavorisViewHolder> {
 
     private Context context;
-    public List<String> listeFavorisGroupe;
+    public List<String> listeFavorisString;
 
 
     public FavorisViewAdapter(Context ct, List<String> listeGroupe){
        context = ct;
-       this.listeFavorisGroupe = listeGroupe;
+       this.listeFavorisString = listeGroupe;
     }
 
 
@@ -32,12 +34,15 @@ public class FavorisViewAdapter extends RecyclerView.Adapter<FavorisViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull FavorisViewHolder holder, int position) {
-        holder.getGroupeButton().setText(listeFavorisGroupe.get(position));
+        holder.getGroupeButton().setText(listeFavorisString.get(position));
+        Glide.with(context).load("https://daviddurand.info/D228/festival/illustrations/" + listeFavorisString.get(position) + "/image.jpg")
+                .override(300,270)
+                .into(holder.getImgViewGroupe());
 
     }
 
     @Override
     public int getItemCount() {
-        return listeFavorisGroupe.size();
+        return listeFavorisString.size();
     }
 }

@@ -325,6 +325,8 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/ll_pompier"
+                        android:clickable="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
@@ -353,6 +355,7 @@
                             android:textStyle="bold"/>
 
                         <TextView
+                            android:id="@+id/tv_pompier"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
@@ -368,6 +371,8 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/ll_maritime"
+                        android:clickable="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
@@ -396,6 +401,7 @@
                             android:textStyle="bold"/>
 
                         <TextView
+                            android:id="@+id/tv_maritime"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
@@ -411,6 +417,8 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/ll_aero"
+                        android:clickable="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
@@ -439,6 +447,7 @@
                             android:textStyle="bold"/>
 
                         <TextView
+                            android:id="@+id/tv_aero"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
@@ -454,6 +463,8 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/ll_attentat"
+                        android:clickable="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
@@ -482,6 +493,7 @@
                             android:textStyle="bold"/>
 
                         <TextView
+                            android:id="@+id/tv_attentat"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"

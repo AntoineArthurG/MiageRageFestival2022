@@ -55,5 +55,45 @@ public class NumUrgenceActivity extends DrawerBaseActivity {
                 startActivity(appel);
             }
         });
+
+        LinearLayout pompier = findViewById(R.id.ll_pompier);
+        pompier.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView tv_pompier = findViewById(R.id.tv_pompier);
+                Intent appel = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", tv_pompier.getText().toString(), null));
+                startActivity(appel);
+            }
+        });
+
+        LinearLayout maritime = findViewById(R.id.ll_maritime);
+        maritime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView tv_maritime = findViewById(R.id.tv_maritime);
+                Intent appel = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", tv_maritime.getText().toString(), null));
+                startActivity(appel);
+            }
+        });
+
+        LinearLayout aero = findViewById(R.id.ll_aero);
+        aero.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView tv_aero = findViewById(R.id.tv_aero);
+                Intent appel = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", tv_aero.getText().toString(), null));
+                startActivity(appel);
+            }
+        });
+
+        LinearLayout attentat = findViewById(R.id.ll_attentat);
+        attentat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView tv_attentat = findViewById(R.id.tv_attentat);
+                Intent appel = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", tv_attentat.getText().toString(), null));
+                startActivity(appel);
+            }
+        });
     }
 }

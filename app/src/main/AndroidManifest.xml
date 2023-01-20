@@ -63,6 +63,8 @@
                 android:value="" />
         </activity>
         <activity android:name=".FavorisActivity" />
+
+        <receiver android:name=".ReminderBoradcast"/>
     </application>
 
 </manifest>

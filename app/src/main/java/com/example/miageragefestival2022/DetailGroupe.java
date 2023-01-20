@@ -48,7 +48,6 @@ public class DetailGroupe extends AppCompatActivity {
         tv_description = findViewById(R.id.tv_description);
         tv_scene = findViewById(R.id.tv_scene);
         tv_web = (ImageView) findViewById(R.id.tv_web);
-        iv_facebook = (ImageView) findViewById(R.id.facebook);
         iv_image = (ImageView) findViewById(R.id.iv_image);
 
         // On récupère le nom du groupe sélectionner par l'utilisateur
@@ -66,16 +65,7 @@ public class DetailGroupe extends AppCompatActivity {
         tv_web.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String url = iv_facebook.getContentDescription().toString();
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(url));
-                startActivity(intent);
-            }
-        });
-        iv_facebook.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String url = iv_facebook.getContentDescription().toString();
+                String url = tv_web.getContentDescription().toString();
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse(url));
                 startActivity(intent);
@@ -85,15 +75,14 @@ public class DetailGroupe extends AppCompatActivity {
 
     public void afficherDetail(String nomGroupe) {
         SharedPrefHelper sharedPrefHelper = new SharedPrefHelper(DetailGroupe.this, nomGroupe);
-        Map<String, ?> groupe = sharedPrefHelper.getGroupe(nomGroupe);
+        Groupe groupe = sharedPrefHelper.getGroupe();
 
-        tv_titreGroupe.setText(groupe.get("artiste").toString());
-        tv_date.setText(groupe.get("jour").toString());
-        tv_heure.setText(groupe.get("heure").toString());
-        tv_description.setText(groupe.get("texte").toString());
-        tv_web.setContentDescription(groupe.get("web").toString());
-        tv_scene.setText(groupe.get("scene").toString());
-        iv_facebook.setContentDescription(groupe.get("web").toString());
+        tv_titreGroupe.setText(groupe.getData().getArtiste());
+        tv_date.setText(groupe.getData().getJour());
+        tv_heure.setText(groupe.getData().getHeure());
+        tv_description.setText(groupe.getData().getTexte());
+        tv_web.setContentDescription(groupe.getData().getWeb());
+        tv_scene.setText(groupe.getData().getScene());
     }
 
     /*

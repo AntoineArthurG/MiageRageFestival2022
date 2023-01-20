@@ -6,22 +6,20 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="674dp"
         android:layout_height="627dp"
         android:background="@drawable/wave_2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.296"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-    </LinearLayout>
+        app:layout_constraintTop_toTopOf="parent"></LinearLayout>
 
     <TextView
         android:id="@+id/Mes_Favoris"
         android:layout_width="166dp"
         android:layout_height="37dp"
-        android:layout_marginLeft="30dp"
         android:layout_marginTop="28dp"
-        android:layout_marginRight="30dp"
         android:text="Mes Favoris"
         android:textColor="@color/white"
         android:textSize="31sp"
@@ -35,28 +33,34 @@
         android:id="@+id/Phrase_Favoris"
         android:layout_width="329dp"
         android:layout_height="0dp"
-        android:layout_marginLeft="30dp"
+        android:layout_marginStart="0dp"
         android:layout_marginTop="20dp"
-        android:layout_marginRight="30dp"
+        android:gravity="center"
         android:text="Vivez l'expérience ultime en étant plus proche de votre groupe de musique préféré."
         android:textColor="@color/white"
         android:textSize="17sp"
         android:textStyle="italic"
-        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Mes_Favoris" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_favoris"
-        android:layout_width="364dp"
-        android:layout_height="509dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="20dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="6dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Phrase_Favoris" />
+        app:layout_constraintTop_toBottomOf="@+id/Phrase_Favoris">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_favoris"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteY="16dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

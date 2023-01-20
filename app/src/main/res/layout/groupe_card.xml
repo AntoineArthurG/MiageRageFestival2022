@@ -11,21 +11,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
-        android:layout_marginBottom="30dp"
+        app:cardBackgroundColor="#DCFFFFFF"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp"
+        app:cardUseCompatPadding="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:cardCornerRadius="10dp"
-        app:cardBackgroundColor="#DCFFFFFF"
-        app:cardElevation="10dp"
-        app:cardUseCompatPadding="true">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="40dp"
-            >
+            android:minHeight="40dp">
 
             <ImageView
                 android:id="@+id/iv_groupe"
@@ -37,17 +35,16 @@
 
             <Button
                 android:id="@+id/btn_listeGroupe"
-                android:layout_width="227dp"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
+                android:gravity="left|center_vertical"
                 android:textColor="@android:color/black"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/btn_addToFavorite"
                 app:layout_constraintStart_toEndOf="@+id/iv_groupe"
-                app:layout_constraintTop_toTopOf="parent"
-                />
-
+                app:layout_constraintTop_toTopOf="parent" />
 
 
             <ImageButton

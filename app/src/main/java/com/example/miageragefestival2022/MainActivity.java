@@ -21,6 +21,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
+import java.security.acl.Group;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -188,7 +189,7 @@ public class MainActivity extends DrawerBaseActivity {
                     );
 
                     // On enregistre les détails du groupe en question
-                    sharedPreferences.saveGroupeToSharedPref(groupe);
+                    sharedPreferences.saveGroupe(groupe);
                 }
             }
 
@@ -214,27 +215,24 @@ public class MainActivity extends DrawerBaseActivity {
     }
 
     /*
-        Renvoit un liste de Groupe utiliser pour peupler le recycler view
+        Renvoit une liste de Groupe utiliser pour peupler le recycler view
      */
     public List<Groupe> getListeGroupe (List<String> listeGroupe) {
         List<Groupe> res = new ArrayList<>();
 
         for (int i = 0; i < listeGroupe.size(); i++) {
             SharedPrefHelper sp = new SharedPrefHelper(this, listeGroupe.get(i));
-            Groupe.Data data = new Groupe.Data(
+
+            Groupe groupe = new Groupe("","",new Groupe.Data(
                     listeGroupe.get(i),
-                    sp.getGroupe(listeGroupe.get(i)).get("texte").toString(),
-                    sp.getGroupe(listeGroupe.get(i)).get("web").toString(),
-                    sp.getGroupe(listeGroupe.get(i)).get("image").toString(),
-                    sp.getGroupe(listeGroupe.get(i)).get("scene").toString(),
-                    sp.getGroupe(listeGroupe.get(i)).get("jour").toString(),
-                    sp.getGroupe(listeGroupe.get(i)).get("heure").toString(),
-                    (Integer) sp.getGroupe(listeGroupe.get(i)).get("time")
-            );
-            Groupe groupe = new Groupe();
-            groupe.setMessage("");
-            groupe.setCode("");
-            groupe.setData(data);
+                    sp.getGroupe().getData().getTexte(),
+                    sp.getGroupe().getData().getWeb(),
+                    sp.getGroupe().getData().getImage(),
+                    sp.getGroupe().getData().getScene(),
+                    sp.getGroupe().getData().getJour(),
+                    sp.getGroupe().getData().getHeure(),
+                    sp.getGroupe().getData().getTime()
+            ));
 
             res.add(groupe);
         }
