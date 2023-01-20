@@ -3,6 +3,15 @@
     <string name="menu_drawer_open">Drawer Open</string>
     <string name="menu_drawer_close">Drawer Close</string>
 
+    <string name="texte1"> Notre application est conçue pour faciliter votre navigation et votre découverte des groupes participant au festival Miage Rage 2022. </string>
+    <string name="texte2"> Lorsque vous ouvrez l\'application pour la première fois vous serez dirigé vers l\'écran principal qui affiche la liste complète des groupes participant au festival sur les deux jours de l\'événement. </string>
+    <string name="texte3"> Vous pourrez parcourir la liste des groupes et ajouter un ou plusieurs groupes à votre liste de groupes favoris en cliquant sur la petite étoile à droite du nom du groupe en question. De la même manière vous pourrez supprimer un groupe de votre liste des favoris. Il est également possible de filtrer la liste des groupes par jour ou par scène en utilisant l\'option de filtrage située en dessous du bouton Mes Favoris. </string>
+    <string name="texte4"> En cliquant sur le bouton Mes Favoris vous accéderez à la liste exhaustive de tous les groupes marqués comme favoris. En cliquant sur un groupe en particulier vous ouvrez la page contenant tous les détails du groupe y compris la période de passage une brève description et un lien vers la page web du groupe. Ces détails sont également accessibles depuis l\'écran principal en cliquant sur le nom d\'un groupe. </string>
+    <string name="texte5"> En tout temps vous pouvez accéder au menu de l\'application en utilisant le bouton de menu situé dans la barre d\'outils à gauche ou en glissant vers la gauche depuis l\'écran principal. Ce menu vous permet de naviguer entre les différentes options de l\'application y compris la page d\'accueil les numéros d\'urgence les applications utiles et A propos.</string>
+    <string name="texte6"> En utilisant ces fonctionnalités simples et intuitives vous pouvez facilement découvrir les groupes qui vous intéressent et créer votre propre liste de groupes favoris pour vous assurer de ne pas manquer un spectacle lors du festival.</string>
+    <string name="texte7"> N\'hésitez pas à explorer toutes les options de l\'application pour profiter pleinement de votre expérience de festival \!</string>
+    <string name="texte8"> Nous espérons que vous apprécierez utiliser notre application et que vous aurez une expérience agréable lors de votre participation au festival Miage Rage 2022.</string>
+
     <string-array name="Jour">
         <item></item>
         <item>Vendredi</item>
