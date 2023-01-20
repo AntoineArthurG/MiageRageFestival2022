@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,12 +22,14 @@ public class FavorisViewHolder extends RecyclerView.ViewHolder {
     private Button groupe;
     private Button supprGroupeFromFavoris;
     private FavorisViewAdapter adapter;
+    private ImageView iv_favoris;
 
     public FavorisViewHolder(@NonNull View itemView) {
         super(itemView);
 //        nomGroupe = itemView.findViewById(R.id.tv_nomGroupeFavoris);
         groupe = itemView.findViewById(R.id.btn_go2Groupe);
         supprGroupeFromFavoris = itemView.findViewById(R.id.btn_Suppr_favoris);
+        iv_favoris = itemView.findViewById(R.id.iv_favoris);
 
 
         /*
@@ -55,7 +58,7 @@ public class FavorisViewHolder extends RecyclerView.ViewHolder {
                 editor.remove(groupe.getText().toString()).commit();
 
                 // On supprime le groupe du recyclerView
-                adapter.listeFavorisGroupe.remove(getAbsoluteAdapterPosition());
+                adapter.listeFavorisString.remove(getAbsoluteAdapterPosition());
 
                 // On notifie l'utilisateur de la suppression du groupe
                 Toast.makeText(view.getContext(), groupe.getText().toString()+" supprimé", Toast.LENGTH_LONG).show();
@@ -70,6 +73,10 @@ public class FavorisViewHolder extends RecyclerView.ViewHolder {
 
     public Button getGroupeButton () {
         return this.groupe;
+    }
+
+    public ImageView getImgViewGroupe () {
+        return this.iv_favoris;
     }
 
 //    public TextView getNomGroupe (){
