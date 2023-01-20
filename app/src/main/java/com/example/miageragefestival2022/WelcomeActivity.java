@@ -19,21 +19,25 @@ public class WelcomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_welcome);
 
         TextView compte = findViewById(R.id.compte);
+        Button welcome = (Button) findViewById(R.id.welcome);
 
         new CountDownTimer(10000, 1000) {
 
             @Override
             public void onTick(long millisUntilFinished) {
+                welcome.setClickable(false);
                 compte.setText("" + millisUntilFinished / 1000);
+
             }
 
             @Override
             public void onFinish() {
+                welcome.setClickable(true);
                 compte.setText("Appuyer nimporte où pour commencer");
             }
         }.start();
 
-        Button welcome = (Button) findViewById(R.id.welcome);
+
         welcome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
